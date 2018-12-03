@@ -10,12 +10,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static Database database;
+    public static int aaa=1;
     Button btnLogin,btnSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        database=new Database(this,"SmartMoney.sqlite",null,1);
         AnhXa();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
