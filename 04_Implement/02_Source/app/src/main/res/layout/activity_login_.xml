@@ -3,95 +3,115 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@drawable/anh_nen"
-    android:orientation="vertical"
-    android:weightSum="5"
+    android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3">
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:src="@drawable/lo_go"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="0.6"
-        android:text="DANG NHAP"
-        android:textColor="#c0ecf2"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edtuser"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textColor="#c0ecf2"
-        android:layout_weight="0.5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Email"
-        android:textSize="20sp"
-        android:textColorHint="#c0ecf2"/>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.3">-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/lo_go"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.6"
+            android:text="DANG NHAP"
+            android:textColor="#c0ecf2"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <com.google.android.gms.common.SignInButton
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:id="@+id/login_button_signin">
+        </com.google.android.gms.common.SignInButton>
+
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edtpass"
-        android:password="true"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Password"
-        android:textSize="20sp"
-        android:textColor="@color/color_while"
-        android:textColorHint="@color/color_while"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnlogin1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:text="DANG NHAP"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="center"
-        android:textColor="@color/color_while"
-        android:background="@drawable/custom_drawable" />
+    <!--<EditText-->
+        <!--android:id="@+id/edtuser"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:textColor="#c0ecf2"-->
+        <!--android:layout_weight="0.5"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:hint="Email"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textColorHint="#c0ecf2"/>-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.3">-->
+    <!--</LinearLayout>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:text="quen mat khau???"
-        android:textColor="@color/color_while"
-        android:layout_gravity="center"
-        android:background="@null"/>
+    <!--<EditText-->
+        <!--android:id="@+id/edtpass"-->
+        <!--android:password="true"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.5"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:hint="Password"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textColor="@color/color_while"-->
+        <!--android:textColorHint="@color/color_while"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.2">-->
+    <!--</LinearLayout>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btnlogin1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.4"-->
+        <!--android:text="DANG NHAP"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textColor="@color/color_while"-->
+        <!--android:background="@drawable/custom_drawable" />-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.1">-->
+    <!--</LinearLayout>-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.3"-->
+        <!--android:text="quen mat khau???"-->
+        <!--android:textColor="@color/color_while"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="@null"/>-->
+
+
 
 </LinearLayout>

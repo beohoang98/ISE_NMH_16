@@ -1,5 +1,4 @@
-package com.example.thang.smartmoney;
-
+package com.example.thang.smartmoney.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class UserFragment extends Fragment {
+import com.example.thang.smartmoney.R;
+
+public class RecommandFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_user,container,false);
+        View view = inflater.inflate(R.layout.fragment_recommand, container, false);
         return view;
     }
 }
-
-

@@ -63,7 +63,7 @@
 
         <fragment
             android:id="@+id/fragment2"
-            android:name="com.example.thang.smartmoney.AddOneFragment"
+            android:name="com.example.thang.smartmoney.fragment.AddOneFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>

@@ -3,6 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="color_while">#ffffff</color>
     <color name="color_blue">#0000ff</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#00574b</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="income">#3388ff</color>
+    <color name="outcome">#cc3355</color>
 </resources>

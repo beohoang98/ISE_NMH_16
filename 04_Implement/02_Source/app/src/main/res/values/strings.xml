@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">Smart Money</string>
+    <string-array name="category_test">
+        <item>Food</item>
+        <item>Drinks</item>
+        <item>Home</item>
+    </string-array>
+
+    <string name="price_title">Giá tiền</string>
+    <string name="category_title">Phân loại</string>
+    <string name="date_title">Ngày</string>
+    <string name="note_title">Ghi Chú</string>
 </resources>

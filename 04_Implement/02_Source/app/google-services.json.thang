@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "446991319592",
+    "firebase_url": "https://smart-money-2c1d3.firebaseio.com",
+    "project_id": "smart-money-2c1d3",
+    "storage_bucket": "smart-money-2c1d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446991319592:android:7ea618b6109c7486",
+        "android_client_info": {
+          "package_name": "com.example.thang.smartmoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446991319592-ghjkobeus42hn0i43no638dkhdpc0n3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoIWCmMdjAJODzSDUZttgL5yVt33y34Js"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

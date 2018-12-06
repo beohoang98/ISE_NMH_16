@@ -5,103 +5,79 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="them thu nhap"
-        android:textSize="25sp"
-        android:gravity="center"/>
-
-
-
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:orientation="vertical"
+        android:background="@color/income"
+        android:paddingVertical="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INCOME"
+            android:layout_gravity="center"
+            android:textSize="18dp"
+            android:textColor="@color/color_while"/>
 
-        <EditText
-            android:inputType="number"
-            android:hint="VND"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"/>
-
-        <Button
-            android:id="@+id/btnThemTN"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:text="them" />
-
-        <Button
-            android:id="@+id/btnHUYTN"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:text="huy" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ghi chu"
-        android:textSize="25sp"
-        android:gravity="center"/>
-
-    <EditText
-        android:id="@+id/edtAddGHiChu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="thu nhap"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"/>
-
     <LinearLayout
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9">
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:paddingRight="10dp"
+                    android:textSize="16sp"
+                    android:hint="@string/price_title"
+                    android:id="@+id/frag_addincome_price"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="đ"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:gravity="center_vertical|center"/>
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnAddGhiChu"
-            android:layout_weight="1"
-            android:background="@null"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="them"/>
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/category_title"
+            android:id="@+id/frag_addincome_spinner">
 
-        <Button
-            android:id="@+id/btnHUY"
-            android:background="@null"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="huy"/>
+        </android.support.v7.widget.AppCompatSpinner>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/date_title"
+                android:id="@+id/frag_addincome_date"/>
+        </android.support.design.widget.TextInputLayout>
+
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/LvAddIncome"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+
 
 </LinearLayout>
