@@ -2,6 +2,7 @@ package com.example.thang.smartmoney.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -14,16 +15,13 @@ import java.io.InputStreamReader;
 
 public class Database extends SQLiteOpenHelper {
     private static final String DBNAME = "SmartMoney.sqlite";
-    private static final int DBVERSION = 1;
+    private static final int DBVERSION = 3;
     private static Database mInstance = null;
     private Context mContext;
 
     public Database(Context context) {
         super(context, DBNAME, null, DBVERSION);
         this.mContext = context;
-
-        InitDB(R.raw.db);
-        InitDB(R.raw.initdb);
     }
 
     public static Database getInstance(Context ctx) {
@@ -45,10 +43,11 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        InitDB(db, R.raw.db);
+        InitDB(db, R.raw.initdb);
     }
 
-    void InitDB(int resID) {
+    void InitDB(SQLiteDatabase db, int resID) {
         InputStream is = mContext.getResources().openRawResource(resID);
         InputStreamReader isr = new InputStreamReader(is);
         String smt = "";
@@ -63,7 +62,7 @@ public class Database extends SQLiteOpenHelper {
 
                 if (chars[0] == ';') {
                     Log.d("initdb", smt);
-                    QueryData(smt);
+                    db.execSQL(smt);
                     smt = "";
                 }
 
@@ -76,6 +75,24 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (newVersion > oldVersion)
+        {
+            Log.d("database", "Upgrade from version " + oldVersion + " to " + newVersion);
 
+            try {
+                db.execSQL("DROP TABLE IF EXISTS giaodich");
+                db.execSQL("DROP TABLE IF EXISTS category");
+                db.execSQL("DROP TABLE IF EXISTS vi");
+                db.execSQL("DROP TABLE IF EXISTS ngan_sach");
+
+                Log.d("database", "Upgrade success");
+
+                onCreate(db);
+            } catch (SQLException e)
+            {
+                Log.e("database", "Upgrade fail: " + e.getMessage());
+            }
+
+        }
     }
 }

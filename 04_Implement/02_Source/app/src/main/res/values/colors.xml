@@ -5,6 +5,10 @@
     <color name="color_blue">#0000ff</color>
     <color name="colorPrimaryDark">#00574b</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="income">#3388ff</color>
-    <color name="outcome">#cc3355</color>
+    <color name="expense">#cc3355</color>
+
+    <color name="lightgrey">#cccccc</color>
+    <color name="darkgrey">#333333</color>
 </resources>

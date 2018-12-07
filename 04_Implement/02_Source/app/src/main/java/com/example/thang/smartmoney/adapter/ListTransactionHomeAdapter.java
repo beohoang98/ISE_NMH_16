@@ -1,6 +1,7 @@
 package com.example.thang.smartmoney.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
+import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.ArrayList;
 
@@ -60,8 +62,16 @@ public class ListTransactionHomeAdapter extends BaseAdapter {
 
         holder.icon.setImageResource(R.drawable.lo_go);
         holder.note.setText(addGhiChu.note);
-        holder.price.setText(addGhiChu.sotien);
+        holder.price.setText( PriceFormat.format(addGhiChu.sotien) );
         holder.category.setText(ClassCategory.getName(addGhiChu.category_id));
+
+        if (addGhiChu.from_id == 0) {
+            // income
+            holder.price.setTextColor(ContextCompat.getColor(context, R.color.income));
+        } else {
+            holder.price.setTextColor(ContextCompat.getColor(context, R.color.expense));
+            holder.price.setText("-" + holder.price.getText());
+        }
 
         return convertView;
     }

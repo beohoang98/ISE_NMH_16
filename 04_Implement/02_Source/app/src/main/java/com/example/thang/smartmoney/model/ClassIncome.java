@@ -9,15 +9,11 @@ public class ClassIncome extends ClassGiaoDich {
     public ClassIncome(ContentValues val) {
         super(val);
         from_id = 0;
-        to_id = 1;
+        to_id = ClassVi.VI_CHINH_ID;
     }
 
     public ClassIncome(Date thoigian, int sotien, int category_id, String note) {
-        super(thoigian, sotien, category_id, note, 0, 1);
+        super(thoigian, sotien, category_id, note, 0, ClassVi.VI_CHINH_ID);
     }
 
-    @Override
-    public ContentValues getContentValues() {
-        return super.getContentValues();
-    }
 }

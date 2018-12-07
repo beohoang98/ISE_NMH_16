@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ClassGiaoDich {
     public int id;
-    public Date thoigian;
+    public String thoigian;
     public int sotien;
     public int category_id;
     public String note;
@@ -17,12 +17,7 @@ public class ClassGiaoDich {
 
     public ClassGiaoDich(ContentValues val) {
         this.id = val.getAsInteger("id");
-        try {
-            this.thoigian = (new SimpleDateFormat()).parse(val.getAsString("thoi_gian"));
-        } catch (ParseException e) {
-            this.thoigian = null;
-        }
-
+        this.thoigian = val.getAsString("thoi_gian");
         this.sotien = val.getAsInteger("so_tien");
         this.category_id = val.getAsInteger("category_id");
         this.note = val.getAsString("note");
@@ -31,7 +26,7 @@ public class ClassGiaoDich {
     }
 
     public ClassGiaoDich(Date thoigian, int sotien, int category_id, String note, int from_id, int to_id) {
-        this.thoigian = thoigian;
+        this.thoigian = new SimpleDateFormat("dd/MM/yyyy").format(thoigian);
         this.sotien = sotien;
         this.category_id = category_id;
         this.note = note;
@@ -41,7 +36,7 @@ public class ClassGiaoDich {
 
     public ContentValues getContentValues() {
         ContentValues val = new ContentValues();
-        val.put("thoi_gian", thoigian.toString());
+        val.put("thoi_gian", thoigian);
         val.put("so_tien", sotien);
         val.put("category_id", category_id);
         val.put("note", note);

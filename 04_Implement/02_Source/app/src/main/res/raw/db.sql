@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS giaodich
 	id integer primary key autoincrement,
 
 	category_id smallint,
-	thoi_gian date,
-	ghi_chu nvarchar(255),
+	thoi_gian varchar(10),
+	note nvarchar(255),
 	so_tien integer,
 
 	from_id integer,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS ngan_sach
 (
 	id integer primary key autoincrement,
 	name varchar,
-	ngay_bd date,
-	ngay_kt date,
+	ngay_bd varchar(10),
+	ngay_kt varchar(10),
 	so_tien integer
 );

@@ -51,4 +51,14 @@ public class ClassCategory {
 
         return null;
     }
+
+    public static int getIdOfName(String name)
+    {
+        for (ClassCategory cate : list) {
+            if (cate.name.equals(name))
+                return cate.id;
+        }
+
+        return -1;
+    }
 }

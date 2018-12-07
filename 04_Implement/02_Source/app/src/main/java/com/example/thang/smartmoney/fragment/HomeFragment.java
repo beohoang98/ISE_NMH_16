@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.thang.smartmoney.R;
+import com.example.thang.smartmoney.adapter.Fragment_TransListByTime_Adapter;
+import com.example.thang.smartmoney.database.DBVi;
+import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.Calendar;
 
@@ -22,11 +24,13 @@ public class HomeFragment extends Fragment {
     private ViewPager mViewPager;
     private Fragment_TransListByTime_Adapter adapter;
     private Calendar calender;
+    private TextView soDu;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         calender = Calendar.getInstance();
+        DBVi.init(getContext());
     }
 
     @Nullable
@@ -75,41 +79,8 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-    }
 
-
-    private class Fragment_TransListByTime_Adapter extends FragmentStatePagerAdapter {
-
-        private Calendar mCal;
-
-        public Fragment_TransListByTime_Adapter(FragmentManager fm) {
-            super(fm);
-            mCal = Calendar.getInstance();
-        }
-
-        public void setmCal(Calendar mCal) {
-            this.mCal = mCal;
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(mCal.getTime());
-            cal.add(Calendar.DATE, i - 1);
-
-            Fragment_TransListByTime frag = new Fragment_TransListByTime();
-            frag.setTime(cal.getTime());
-            return frag;
-        }
-
-        @Override
-        public int getItemPosition(@NonNull Object object) {
-            return POSITION_NONE;
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
+        soDu = view.findViewById(R.id.home_sodu);
+        soDu.setText(PriceFormat.format(DBVi.getSoDu()));
     }
 }

@@ -7,8 +7,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:elevation="5dp"
+        android:background="@drawable/custom_card">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,6 +29,70 @@
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-condensed"/>
 
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        android:translationZ="10dp"
+        android:background="@drawable/custom_card"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/income_title"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="+000"
+                android:gravity="end"
+                android:textColor="@color/income"
+                android:id="@+id/sumIncome"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expense_title"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="-000"
+                android:gravity="end"
+                android:textColor="@color/expense"
+                android:id="@+id/sumOutcome"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total:"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="+000"
+                android:gravity="end"
+                android:textColor="@color/income"
+                android:id="@+id/sumTotal"/>
         </LinearLayout>
 
     </LinearLayout>

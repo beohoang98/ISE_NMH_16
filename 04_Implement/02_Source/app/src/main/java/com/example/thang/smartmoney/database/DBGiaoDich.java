@@ -6,14 +6,16 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.thang.smartmoney.model.ClassGiaoDich;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class DBGiaoDich {
-    private static SQLiteDatabase db;
+    protected static SQLiteDatabase db;
 
     public static void init(Context ctx) {
         if (db == null) db = Database.getInstance(ctx).getWritableDatabase();
@@ -35,12 +37,12 @@ public class DBGiaoDich {
         ArrayList<ClassGiaoDich> res = new ArrayList<>();
         if (c.getCount() == 0) return res;
 
-        do {
+        while (c.moveToNext()) {
             ContentValues val = new ContentValues();
             DatabaseUtils.cursorRowToContentValues(c, val);
             ClassGiaoDich gd = new ClassGiaoDich(val);
             res.add(gd);
-        } while (c.moveToNext());
+        }
         return res;
     }
 
@@ -55,7 +57,11 @@ public class DBGiaoDich {
     }
 
     public static ArrayList<ClassGiaoDich> getByDate(Date date) {
-        Cursor cursor = db.rawQuery("SELECT giaodich.* FROM giaodich WHERE thoi_gian = '" + date.toString() + "'", null);
+        String dateStr = (new SimpleDateFormat("dd/MM/yyyy")).format(date);
+        Cursor cursor = db.rawQuery("SELECT * FROM giaodich WHERE thoi_gian = '" + dateStr + "'", null);
+
+        Log.d("query", dateStr + " : " + cursor.getCount());
+
         return cursorToArray(cursor);
     }
 
