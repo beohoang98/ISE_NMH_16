@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="color_while">#ffffff</color>
+    <color name="color_blue">#0000ff</color>
+    <color name="colorPrimaryDark">#00574b</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="income">#3388ff</color>
+    <color name="expense">#cc3355</color>
+
+    <color name="lightgrey">#cccccc</color>
+    <color name="darkgrey">#333333</color>
+</resources>
