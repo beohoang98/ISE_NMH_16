@@ -1,70 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
-    android:background="@color/color_while"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<LinearLayout android:layout_height="match_parent"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--android:weightSum="10"-->
+    <!--android:background="@color/color_while"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-    <LinearLayout
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.6"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_weight="1.5"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent">-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<Button-->
+                <!--android:onClick="onClick"-->
+                <!--android:id="@+id/btnaddincome"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="thu nhap"-->
+                <!--android:textColor="@color/color_while"-->
+                <!--android:background="@color/color_blue"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<Button-->
+                <!--android:onClick="onClick"-->
+                <!--android:id="@+id/btnaddspend"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="chi tieu"-->
+                <!--android:textColor="@color/color_blue"-->
+                <!--android:background="@color/color_while"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_weight="1.5"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent">-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/framecontentadd"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="9.4">-->
+
+        <!--<fragment-->
+            <!--android:id="@+id/fragment2"-->
+            <!--android:name="com.example.thang.smartmoney.fragment.AddOneFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+    <!--</FrameLayout>-->
+<!--</LinearLayout>-->
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:id="@+id/frag_add_pager">
 
-        <LinearLayout
-            android:layout_weight="1.5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
-            <Button
-                android:onClick="onClick"
-                android:id="@+id/btnaddincome"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="thu nhap"
-                android:textColor="@color/color_while"
-                android:background="@color/color_blue"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
-            <Button
-                android:onClick="onClick"
-                android:id="@+id/btnaddspend"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="chi tieu"
-                android:textColor="@color/color_blue"
-                android:background="@color/color_while"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1.5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-        </LinearLayout>
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/framecontentadd"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9.4">
-
-        <fragment
-            android:id="@+id/fragment2"
-            android:name="com.example.thang.smartmoney.AddOneFragment"
+        <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabIndicatorHeight="4dp"
+            app:tabTextColor="@color/darkgrey"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            app:tabBackground="@color/lightgrey"
+            android:id="@+id/frag_add_tablayout"
+            android:elevation="5dp"
+            android:translationZ="10dp"
+            android:background="@drawable/custom_card">
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tabitem_income"/>
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tabitem_outcome"/>
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.v4.view.ViewPager>
+
 </LinearLayout>

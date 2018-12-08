@@ -13,7 +13,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Login_Activity extends AppCompatActivity {
     EditText edtuser,edtpass;
@@ -54,7 +53,7 @@ public class Login_Activity extends AppCompatActivity {
                     {
                         if(task.isSuccessful())
                         {
-          //                  FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                            //                  FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
                             Intent intent=new Intent(Login_Activity.this,home_activity.class);
                             startActivity(intent);
                         }

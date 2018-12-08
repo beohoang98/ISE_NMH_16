@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -14,7 +15,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="com.example.thang.smartmoney.HomeFragment"
+            android:name="com.example.thang.smartmoney.fragment.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>
@@ -32,7 +33,7 @@
         android:layout_weight="0.96"
         android:weightSum="4"
         android:orientation="horizontal"
-        android:background="@null">
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="0dp"
