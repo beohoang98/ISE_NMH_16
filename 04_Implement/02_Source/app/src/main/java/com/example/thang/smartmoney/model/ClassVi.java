@@ -3,6 +3,7 @@ package com.example.thang.smartmoney.model;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.thang.smartmoney.database.DBVi;
 import com.example.thang.smartmoney.database.Database;
 
 import java.util.ArrayList;
@@ -33,6 +34,4 @@ public class ClassVi {
     public ClassVi() {
 
     }
-
-
 }

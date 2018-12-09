@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.CategorySpinnerAdapter;
 import com.example.thang.smartmoney.adapter.ListTransactionHomeAdapter;
-import com.example.thang.smartmoney.database.DBIncome;
+import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassIncome;
 import com.example.thang.smartmoney.xulysukien.KiemTraInput;
@@ -229,7 +229,7 @@ public class AddOneFragment extends Fragment {
 
                 if (validator.KiemTraGiaTien(price) && validator.KiemTraCategory(category_id)) {
                     ClassIncome income = new ClassIncome(date, price, category_id, note);
-                    DBIncome.them(income);
+                    DBGiaoDich.them(income);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
 
                     FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();

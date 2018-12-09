@@ -9,31 +9,52 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.thang.smartmoney.model.ClassGiaoDich;
+import com.example.thang.smartmoney.xulysukien.DateFormat;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DBGiaoDich {
     protected static SQLiteDatabase db;
+    static Context ctx;
 
-    public static void init(Context ctx) {
+    public static void init(Context _ctx) {
+        if (ctx == null) ctx = _ctx;
         if (db == null) db = Database.getInstance(ctx).getWritableDatabase();
     }
 
-    public static boolean them(ClassGiaoDich gd) {
+    public static void close() {
+        db.close();
+        db = null;
+    }
+
+    protected static SQLiteDatabase getDB() {
+        if (db == null) db = Database.getInstance(ctx).getWritableDatabase();
+        return db;
+    }
+
+    /**
+     *
+     * @param {ClassGiaoDich} giao dich
+     * @return {int} tra ve id vua moi duoc insert
+     */
+    public static int them(ClassGiaoDich gd) {
         try {
             ContentValues newVal = gd.getContentValues();
-            long id = db.insert("giaodich", null, newVal);
+            // them vao thi bo id ra
+            newVal.remove("id");
 
-            if (id > -1) return true;
-            else return false;
+            long id = getDB().insert("giaodich", null, newVal);
+
+            return (int)id;
         } catch (SQLException e) {
-            return false;
+            return -1;
         }
     }
 
-    public static ArrayList<ClassGiaoDich> cursorToArray(Cursor c) {
+    protected static ArrayList<ClassGiaoDich> cursorToArray(Cursor c) {
         ArrayList<ClassGiaoDich> res = new ArrayList<>();
         if (c.getCount() == 0) return res;
 
@@ -47,40 +68,65 @@ public class DBGiaoDich {
     }
 
     public static ArrayList<ClassGiaoDich> getTatCa() {
-        Cursor cursor = db.rawQuery("SELECT * FROM giaodich ORDER BY thoi_gian DESC", null);
+        Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich ORDER BY thoi_gian DESC", null);
         return cursorToArray(cursor);
     }
 
+
     public static ArrayList<ClassGiaoDich> getByCategory(String category_name) {
-        Cursor cursor = db.rawQuery("SELECT giaodich.* FROM giaodich, category WHERE giaodich.category_id = category.id", null);
+        Cursor cursor = getDB().rawQuery("SELECT giaodich.* FROM giaodich, category WHERE giaodich.category_id = category.id", null);
         return cursorToArray(cursor);
     }
 
     public static ArrayList<ClassGiaoDich> getByDate(Date date) {
         String dateStr = (new SimpleDateFormat("dd/MM/yyyy")).format(date);
-        Cursor cursor = db.rawQuery("SELECT * FROM giaodich WHERE thoi_gian = '" + dateStr + "'", null);
+        Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoi_gian = '" + dateStr + "'", null);
 
         Log.d("query", dateStr + " : " + cursor.getCount());
 
         return cursorToArray(cursor);
     }
 
+    /**
+     *
+     * @param id id cua giao dich do
+     * @return ClassGiaoDich ung voi id do
+     */
     public static ClassGiaoDich getById(int id) {
         Cursor cursor = db.rawQuery("SELECT * FROM giaodich WHERE id = " + id, null);
-        return cursorToArray(cursor).get(0);
+        ArrayList<ClassGiaoDich> res = cursorToArray(cursor);
+        if (res.size() == 0)
+            return null;
+        return res.get(0);
     }
 
     public static ArrayList<ClassGiaoDich> getByMonth(int month, int year) {
-        String[] args = {month + "", year + ""};
-        Cursor cursor = db.rawQuery("SELECT * FROM giaodich WHERE strftime('%m', thoi_gian) = ? AND strftime('%y', thoi_gian) = ?", args);
+        String yearStr = "" + year;
+        String monthStr = (month > 9) ? ("" + month) : ("0" + month);
+        String[] args = { monthStr + "/" + yearStr };
+
+        Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoigian LIKE '%?'", args);
         return cursorToArray(cursor);
     }
 
+    /**
+     * update CLassGiaoDich gd khi da duoc chinh sua
+     * @param gd
+     * @return
+     */
+    public static int update(ClassGiaoDich gd) {
+        ContentValues val = gd.getContentValues();
+        val.remove("id"); // bo id ra, khong keo bi loi~
+        return getDB().update("giaodich", val, "id = ?", new String[]{ gd.id + "" });
+    }
 
+    /**
+     *
+     * @param id id cua giao dich
+     * @return {true} neu xoa thanh cong, {false} neu xoa that bai
+     */
     public static boolean xoa(int id) {
         String[] args = {id + ""};
-        int idDeleted = db.delete("giaodich", "id = ?", args);
-        if (idDeleted > -1) return true;
-        return false;
+        return getDB().delete("giaodich", "id = ?", args) > 0;
     }
 }
