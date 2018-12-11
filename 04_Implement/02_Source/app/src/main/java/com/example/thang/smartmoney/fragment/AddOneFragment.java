@@ -139,7 +139,7 @@ public class AddOneFragment extends Fragment {
 //        btnHUY           = view.findViewById(R.id.btnHUY);
         calendar = Calendar.getInstance();
         categorySpinner = view.findViewById(R.id.frag_income_spinner);
-        categorySpinnerAdapter = new CategorySpinnerAdapter(getContext());
+        categorySpinnerAdapter = new CategorySpinnerAdapter(getContext(), ClassCategory.CATEGORY_TYPE.INCOME);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
         noteText = view.findViewById(R.id.frag_income_note);

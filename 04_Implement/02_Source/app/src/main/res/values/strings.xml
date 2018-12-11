@@ -2,12 +2,6 @@
 <resources>
     <string name="app_name">Smart Money</string>
 
-    <string-array name="category_test">
-        <item>Food</item>
-        <item>Drinks</item>
-        <item>Home</item>
-    </string-array>
-
     <string name="price_title">Giá tiền</string>
     <string name="category_title">Phân loại</string>
     <string name="date_title">Ngày</string>
@@ -23,4 +17,10 @@
     <string name="price_null">Bạn chưa nhập giá tiền</string>
 
     <string name="category_null">Bạn chưa chọn category</string>
+
+    <string name="md_icon_baseurl">https://material.io/tools/icons/static/icons/</string>
+    <string-array name="md_icon_type">
+        <item>round</item>
+        <item>outline</item>
+    </string-array>
 </resources>

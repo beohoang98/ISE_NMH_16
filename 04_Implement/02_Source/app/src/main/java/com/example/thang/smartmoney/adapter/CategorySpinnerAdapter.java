@@ -12,30 +12,41 @@ import android.widget.TextView;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.model.ClassCategory;
 
+import java.util.List;
+
 public class CategorySpinnerAdapter extends BaseAdapter {
 
     Context mContext;
+    ClassCategory.CATEGORY_TYPE type;
     LayoutInflater mLayoutInflater;
+    List<ClassCategory> dataList;
 
-    public CategorySpinnerAdapter(Context context)
+    public CategorySpinnerAdapter(Context context, ClassCategory.CATEGORY_TYPE type)
     {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
+        this.type = type;
+        dataList = ClassCategory.getByType(type);
+    }
+
+    public void setType(ClassCategory.CATEGORY_TYPE type) {
+        this.type = type;
+        dataList = ClassCategory.getByType(type);
     }
 
     @Override
     public int getCount() {
-        return ClassCategory.list.size();
+        return dataList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return ClassCategory.list.get(position);
+        return dataList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return ClassCategory.list.get(position).id;
+        return dataList.get(position).id;
     }
 
     @Override

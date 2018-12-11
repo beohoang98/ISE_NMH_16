@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.96"
-        android:weightSum="4"
+        android:weightSum="5"
         android:orientation="horizontal"
         android:background="@color/colorPrimary">
 
@@ -95,6 +95,17 @@
                 android:background="@null"
                 android:src="@drawable/user_off" />
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_view_list"
+            android:background="@null"
+            android:tint="@android:color/white"
+            android:layout_gravity="center"
+            android:id="@+id/btnCategory"
+            android:layout_weight="1"
+            android:onClick="addfragment"/>
 
     </LinearLayout>
 

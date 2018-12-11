@@ -53,7 +53,7 @@ public class AddExpenseFragment extends Fragment {
     public void AnhXa() {
         calendar = Calendar.getInstance();
         categorySpinner = view.findViewById(R.id.frag_expense_spinner);
-        categorySpinnerAdapter = new CategorySpinnerAdapter(getContext());
+        categorySpinnerAdapter = new CategorySpinnerAdapter(getContext(), ClassCategory.CATEGORY_TYPE.EXPENSE);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
         noteText = view.findViewById(R.id.frag_expense_note);

@@ -35,6 +35,7 @@
                 android:textSize="20sp"
                 android:text="Username"
                 android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="10sp"
                 android:id="@+id/frag_user_name"
                 android:gravity="center"/>
 
@@ -44,6 +45,7 @@
                 android:padding="10dp"
                 android:text="Email"
                 android:drawableStart="@drawable/ic_mail"
+                android:drawablePadding="10sp"
                 android:id="@+id/frag_user_email"
                 android:layout_gravity="center"
                 android:gravity="center"/>
@@ -57,10 +59,7 @@
             android:text="Sync"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/color_while"
-            android:id="@+id/sync_btn"
-            android:drawableStart="@drawable/ic_sync"
-            android:drawablePadding="10dp"
-            android:drawableTint="@android:color/white"/>
+            android:id="@+id/sync_btn"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -69,10 +68,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/colorAccent"
             android:textColor="@color/color_while"
-            android:id="@+id/frag_user_button_logout"
-            android:drawableStart="@drawable/ic_exit_to_app"
-            android:drawableTint="@android:color/white"
-            android:drawablePadding="10dp"/>
+            android:id="@+id/frag_user_button_logout"/>
 
     </LinearLayout>
 
