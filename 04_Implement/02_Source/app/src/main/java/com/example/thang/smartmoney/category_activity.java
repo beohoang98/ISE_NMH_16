@@ -21,7 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.thang.smartmoney.fragment.CategoryListFragment;
-import com.example.thang.smartmoney.fragment.IconAdapter;
+import com.example.thang.smartmoney.adapter.IconAdapter;
 import com.example.thang.smartmoney.model.ClassCategory;
 
 import java.util.ArrayList;

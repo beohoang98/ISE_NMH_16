@@ -1,13 +1,16 @@
-package com.example.thang.smartmoney.fragment;
+package com.example.thang.smartmoney.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.model.ClassIcon;
 import com.squareup.picasso.Picasso;
@@ -15,12 +18,14 @@ import com.squareup.picasso.Picasso;
 public class IconAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
+    private Activity activity;
 
-    public IconAdapter(Context ctx)
+    public IconAdapter(Activity act)
     {
-        context = ctx;
+        activity = act;
+        context = act.getBaseContext();
         layoutInflater = LayoutInflater.from(context);
-        ClassIcon.load(ctx);
+        ClassIcon.load(context);
     }
 
     @Override
@@ -39,7 +44,12 @@ public class IconAdapter extends BaseAdapter {
         }
 
         String url = (String)getItem(position);
-        Picasso.get().load(url).into(holder.icon);
+        // su dung thu vien de load image tu url
+        SvgLoader.pluck()
+                .with(activity)
+                .setPlaceHolder(R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round)
+                .load(url, holder.icon);
+
         holder.name.setText(ClassIcon.list.get(position));
 
         return convertView;
@@ -66,7 +76,7 @@ public class IconAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        AppCompatImageView icon;
+        ImageView icon;
         TextView name;
     }
 }

@@ -2,11 +2,12 @@
 <LinearLayout android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/img_icon"
-        android:src="@drawable/ic_view_list"/>
+        android:src="@drawable/ic_view_list"
+        android:layout_marginEnd="10dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -19,6 +19,8 @@ public class ClassIcon {
     public static String type;
 
     public static void load(Context ctx) {
+        if (list != null) return;
+
         baseUrl = ctx.getString(R.string.md_icon_baseurl);
         type = ctx.getResources().getStringArray(R.array.md_icon_type)[0];
         String jsonStr;
@@ -39,12 +41,15 @@ public class ClassIcon {
             JSONObject json = new JSONObject(jsonStr);
 
             JSONArray categories = json.getJSONArray("categories");
-            JSONObject categoryFirst = categories.getJSONObject(0);
-            JSONArray icons = categoryFirst.getJSONArray("icons");
+            for (int i = 0; i < categories.length(); ++i) {
+                JSONObject categoryFirst = categories.getJSONObject(0);
+                JSONArray icons = categoryFirst.getJSONArray("icons");
 
-            for (int i = 0; i < icons.length(); ++i) {
-                list.add(icons.getJSONObject(i).getString("id"));
+                for (int j = 0; j < icons.length(); ++j) {
+                    list.add(icons.getJSONObject(j).getString("id"));
+                }
             }
+
         } catch (JSONException e) {
             throw new RuntimeException(e.getMessage());
         }
