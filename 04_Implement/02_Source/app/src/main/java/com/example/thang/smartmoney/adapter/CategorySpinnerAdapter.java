@@ -1,5 +1,6 @@
 package com.example.thang.smartmoney.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -11,20 +12,22 @@ import android.widget.TextView;
 
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.model.ClassCategory;
+import com.example.thang.smartmoney.model.ClassIcon;
 
 import java.util.List;
 
 public class CategorySpinnerAdapter extends BaseAdapter {
-
+    Activity activity;
     Context mContext;
     ClassCategory.CATEGORY_TYPE type;
     LayoutInflater mLayoutInflater;
     List<ClassCategory> dataList;
 
-    public CategorySpinnerAdapter(Context context, ClassCategory.CATEGORY_TYPE type)
+    public CategorySpinnerAdapter(Activity activity, ClassCategory.CATEGORY_TYPE type)
     {
-        mContext = context;
-        mLayoutInflater = LayoutInflater.from(context);
+        this.activity = activity;
+        mContext = activity.getApplicationContext();
+        mLayoutInflater = LayoutInflater.from(mContext);
         this.type = type;
         dataList = ClassCategory.getByType(type);
     }
@@ -67,7 +70,16 @@ public class CategorySpinnerAdapter extends BaseAdapter {
 
         ClassCategory category = (ClassCategory) getItem(position);
         int iconId = mContext.getResources().getIdentifier(category.icon_url, "drawable", mContext.getPackageName());
-        holder.icon.setImageResource(iconId);
+        if (iconId > 0) {
+            holder.icon.setImageResource(iconId);
+        } else {
+            // try local files
+            boolean canSetIcon = ClassIcon.loadDownloadedIcon(category.icon_url + ".svg", holder.icon, activity);
+            if (!canSetIcon) {
+                // place holder with Android icon
+                holder.icon.setImageResource(R.mipmap.ic_launcher_round);
+            }
+        }
         holder.name.setText(category.name);
 
         return convertView;

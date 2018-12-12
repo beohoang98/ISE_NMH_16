@@ -1,19 +1,29 @@
 package com.example.thang.smartmoney.model;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.ahmadrosid.svgloader.SvgDecoder;
+import com.ahmadrosid.svgloader.SvgLoader;
+import com.ahmadrosid.svgloader.SvgParser;
+import com.bumptech.glide.Glide;
+import com.caverock.androidsvg.SVGExternalFileResolver;
+import com.caverock.androidsvg.SVGParser;
 import com.example.thang.smartmoney.database.Database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class ClassCategory {
-    public static ArrayList<ClassCategory> list;
+    public static List<ClassCategory> list;
     private static SQLiteDatabase db;
+    private static Context context;
 
     public enum CATEGORY_TYPE {
         INCOME, EXPENSE, SAVING
@@ -32,6 +42,8 @@ public class ClassCategory {
     }
 
     public static void loadFromDB(Context ctx) {
+        context = ctx;
+
         if (db == null) {
             db = Database.getInstance(ctx).getWritableDatabase();
         }
@@ -76,5 +88,26 @@ public class ClassCategory {
             }
         }
         return res;
+    }
+
+    public static long add(String name, ClassCategory.CATEGORY_TYPE type, String icon_url)
+    {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("type", type.ordinal());
+        values.put("icon_url", icon_url);
+        return db.insertWithOnConflict("category", null, values, SQLiteDatabase.CONFLICT_IGNORE);
+    }
+
+    public static long delete(int id) {
+        return db.delete("category", "id =?", new String[] {"" + id});
+    }
+
+    public static ClassCategory getById(long id) {
+        for (ClassCategory cate : list) {
+            if (cate.id == id)
+                return cate;
+        }
+        return null;
     }
 }

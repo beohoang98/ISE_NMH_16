@@ -16,6 +16,7 @@
         android:paddingLeft="10dp"
         android:gravity="center_vertical|start"
         android:text="@string/category_title"
-        android:id="@+id/category_name"/>
+        android:id="@+id/category_name"
+        android:textColor="@android:color/black"/>
 
 </LinearLayout>
