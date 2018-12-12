@@ -1,5 +1,6 @@
 package com.example.thang.smartmoney.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
+import com.example.thang.smartmoney.model.ClassIcon;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.ArrayList;
@@ -20,10 +22,12 @@ public class ListTransactionHomeAdapter extends BaseAdapter {
     private ArrayList<ClassGiaoDich> list;
     private Context context;
     private LayoutInflater layoutInflater;
+    private Activity activity;
 
-    public ListTransactionHomeAdapter(Context context, ArrayList<ClassGiaoDich> ghiChuList) {
+    public ListTransactionHomeAdapter(Activity _activity, ArrayList<ClassGiaoDich> ghiChuList) {
         this.list = ghiChuList;
-        this.context = context;
+        activity = _activity;
+        this.context = activity.getBaseContext();
         this.layoutInflater = LayoutInflater.from(context);
     }
 
@@ -60,7 +64,18 @@ public class ListTransactionHomeAdapter extends BaseAdapter {
 
         ClassGiaoDich addGhiChu = this.list.get(position);
 
-        holder.icon.setImageResource(R.drawable.lo_go);
+        ClassCategory category = ClassCategory.getById(addGhiChu.category_id);
+        if (category == null) {
+            return convertView;
+        }
+
+        int iconId = context.getResources().getIdentifier(category.icon_url, "drawable", context.getPackageName());
+        if (iconId > 0)
+            holder.icon.setImageResource(iconId);
+        else if (!ClassIcon.loadDownloadedIcon(category.icon_url + ".svg", holder.icon, activity)) {
+            holder.icon.setImageResource(R.drawable.lo_go);
+        }
+
         holder.note.setText(addGhiChu.note);
         holder.price.setText( PriceFormat.format(addGhiChu.sotien) );
         holder.category.setText(ClassCategory.getName(addGhiChu.category_id));
