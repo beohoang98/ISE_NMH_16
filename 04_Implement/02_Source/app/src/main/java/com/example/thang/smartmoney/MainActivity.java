@@ -1,5 +1,6 @@
 package com.example.thang.smartmoney;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,16 +11,14 @@ import android.widget.Button;
 
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.database.Database;
+import com.example.thang.smartmoney.database.FirebaseSync;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.xulysukien.loginWithGoogle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
-    public static Database database;
-    public static GhiChuDB mGhiChuDB;
-    public static int aaa = 1;
     public static FirebaseAuth mAuth;
     public static FirebaseUser mUser;
 
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        database = Database.getInstance(this);
         ClassCategory.loadFromDB(getApplicationContext());
         DBGiaoDich.init(getApplicationContext());
 
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         if (mUser == null) {
             Log.d("start", "login new");
         } else {
+            FirebaseSync.Init(getApplicationContext());
             Log.d("start", "re login");
             Intent homeIntent = new Intent(MainActivity.this, home_activity.class);
             startActivity(homeIntent);

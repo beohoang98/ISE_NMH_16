@@ -117,9 +117,7 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
-
-
-        <android.support.design.button.MaterialButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD"
@@ -127,7 +125,6 @@
             android:backgroundTint="@color/expense"
             android:textColor="@color/color_while"
             android:id="@+id/frag_expense_submit"
-            style="@style/Widget.MaterialComponents.Button"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     </LinearLayout>

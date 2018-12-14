@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.button.MaterialButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +11,7 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.thang.smartmoney.R;
@@ -24,16 +23,8 @@ import com.example.thang.smartmoney.model.ClassIncome;
 import com.example.thang.smartmoney.xulysukien.KiemTraInput;
 import com.example.thang.smartmoney.xulysukien.mDatePickerClick;
 import com.example.thang.smartmoney.xulysukien.mPriceInput;
-
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.Date;
 
 public class AddOneFragment extends Fragment {
@@ -43,7 +34,7 @@ public class AddOneFragment extends Fragment {
     mPriceInput priceInput;
     TextInputEditText noteText;
 
-    MaterialButton buttonAdd;
+    Button buttonAdd;
 
     ListTransactionHomeAdapter adapter;
     Calendar calendar;

@@ -67,9 +67,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user, container, false);
 
-        avatar_url = MainActivity.mUser.getPhotoUrl();
-        username = MainActivity.mUser.getDisplayName();
-        email = MainActivity.mUser.getEmail();
+        avatar_url = FirebaseSync.getUser().getPhotoUrl();
+        username = FirebaseSync.getUser().getDisplayName();
+        email = FirebaseSync.getUser().getEmail();
 
         if (username == "") username = "no name";
 
