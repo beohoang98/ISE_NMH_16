@@ -25,6 +25,7 @@ import org.robolectric.RuntimeEnvironment;
 
 
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestCase;
@@ -34,6 +35,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @RunWith(RobolectricTestRunner.class)
 public class DBGiaoDichTest extends TestCase {
@@ -157,5 +160,23 @@ public class DBGiaoDichTest extends TestCase {
         DBGiaoDich.xoa(gd.id);
 
         Assert.assertNull(DBGiaoDich.getById(gd.id));
+    }
+
+    @Test
+    public void testGetGDByMonth() {
+        Date date = cal.getTime();
+        int month = cal.get(Calendar.MONTH) + 1; // wtf january in Java start at 0
+        int year = cal.get(Calendar.YEAR);
+        Log.d("test", "" + month + "/" + year);
+
+        ClassGiaoDich gd = new ClassGiaoDich(date, 10000, 1, "test-1", 1, 0);
+        DBGiaoDich.them(gd);
+        DBGiaoDich.them(gd);
+        DBGiaoDich.them(gd);
+        DBGiaoDich.them(gd);
+        // 4
+
+        ArrayList<ClassGiaoDich> list = DBGiaoDich.getByMonth(month, year);
+        assertEquals(4, list.size());
     }
 }

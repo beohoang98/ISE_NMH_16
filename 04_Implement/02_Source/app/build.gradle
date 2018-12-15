@@ -6,7 +6,7 @@ android {
         config {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
-            storeFile file('/home/noobcoder/.android/debug.keystore')
+            storeFile file('debug.keystore')
             storePassword 'android'
         }
     }
@@ -59,6 +59,7 @@ dependencies {
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }
 
 

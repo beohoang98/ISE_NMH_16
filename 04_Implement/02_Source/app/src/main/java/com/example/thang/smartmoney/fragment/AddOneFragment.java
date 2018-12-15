@@ -16,14 +16,12 @@ import android.widget.Toast;
 
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.CategorySpinnerAdapter;
-import com.example.thang.smartmoney.adapter.ListTransactionHomeAdapter;
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassIncome;
 import com.example.thang.smartmoney.xulysukien.KiemTraInput;
 import com.example.thang.smartmoney.xulysukien.mDatePickerClick;
 import com.example.thang.smartmoney.xulysukien.mPriceInput;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,7 +34,6 @@ public class AddOneFragment extends Fragment {
 
     Button buttonAdd;
 
-    ListTransactionHomeAdapter adapter;
     Calendar calendar;
     AppCompatSpinner categorySpinner;
     CategorySpinnerAdapter categorySpinnerAdapter;
@@ -47,87 +44,11 @@ public class AddOneFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_add_income, container, false);
 
         AnhXa();
-        // MainActivity.database.QueryData("CREATE TABLE IF NOT EXISTS GhiChuThuNhap(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenTC VARCHAR,DateTC VARCHAR)");
-        //
-//        GetDataGhiChu();
-//        btnAddGhiChu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String date=
-//                String TextGhiChu=edtAddGhiChu.getText().toString();
-//                if(TextGhiChu.equals("")){
-//                    Toast.makeText(getActivity(), "vui long nhap ghi chu", Toast.LENGTH_SHORT).show();
-//                }else {
-//                    // MainActivity.database.QueryData("INSERT INTO GhichuThuNhap VALUES(null,'"+TextGhiChu+"','"+date+"')");
-//                    MainActivity.mGhiChuDB.addGhiChu(TextGhiChu, date);
-//
-//                    GetDataGhiChu();
-//                    edtAddGhiChu.setText("");
-//                }
-//            }
-//        });
-//        btnHUY.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                edtAddGhiChu.setText("");
-//            }
-//        });
-//
-//        LvAddIncome.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-//                final Dialog dialog=new Dialog(getActivity());
-//                dialog.setContentView(R.layout.dialog_add_remove);
-//                Button btnXoadgl=dialog.findViewById(R.id.btnXoadgl);
-//                Button btnHUYdgl=dialog.findViewById(R.id.btnHUYdgl);
-//
-//                btnXoadgl.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        ClassGiaoDich gc = ghiChuArrayList.get(position);
-//                        DBGiaoDich.xoa(gc.id);
-//                        dialog.dismiss();
-//                        GetDataGhiChu();
-//                    }
-//                });
-//
-//                btnHUYdgl.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                dialog.show();
-//
-//                return false;
-//            }
-//        });
-
         return view;
     }
 
-    private void GetDataGhiChu() {
-//        Cursor dataThuChi =MainActivity.database.GetData("SELECT * FROM GhiChuThuNhap");
-//        ghiChuArrayList.clear();
-//        while (dataThuChi.moveToNext())
-//        {
-//            String ten       = dataThuChi.getString(1);
-//            int    id        = dataThuChi.getInt(0);
-//            String datetime  = dataThuChi.getString(2);
-//            ghiChuArrayList.add(0,new AddGhiChu(id,ten,datetime));
-//        }
-        adapter.notifyDataSetChanged();
-    }
 
     public void AnhXa() {
-
-//        LvAddIncome      = view.findViewById(R.id.LvAddIncome);
-//        edtAddGhiChu     = view.findViewById(R.id.edtAddGHiChu);
-//        btnThemTN        = view.findViewById(R.id.btnThemTN);
-//        btnHUYTN         = view.findViewById(R.id.btnHUYTN);
-//        btnAddGhiChu     = view.findViewById(R.id.btnAddGhiChu);
-//        btnHUY           = view.findViewById(R.id.btnHUY);
         calendar = Calendar.getInstance();
         categorySpinner = view.findViewById(R.id.frag_income_spinner);
         categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.INCOME);
@@ -139,59 +60,6 @@ public class AddOneFragment extends Fragment {
         handleDateInput();
         handleSubmit();
     }
-
-    private String getdate() {
-
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dinhdang = new SimpleDateFormat("dd/MM/yyyy");
-        String date = dinhdang.format(calendar.getTime());
-        return date;
-    }
-
-//        private void Dialog_remove (){
-//        final Dialog dialog=new Dialog(getActivity());
-//        dialog.setContentView(R.layout.dialog_add_remove);
-//        Button btnXoadgl=dialog.findViewById(R.id.btnXoadgl);
-//        Button btnHUYdgl=dialog.findViewById(R.id.btnHUYdgl);
-//
-//        btnXoadgl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                database.QueryData("DELETE FROM GhiChuThuNhap WHERE Id='"+  +"'");
-//            }
-//        });
-//
-//        btnHUYdgl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        dialog.show();
-//
-//
-//
-//    }
-
-
-//    private void addGhiChu(){
-//        AnhXa();
-//
-//        btnAddGhiChu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String date=getdate();
-//                String TextGhiChu=edtAddGhiChu.getText().toString();
-//                if(TextGhiChu.equals("")){
-//                    Toast.makeText(getActivity(), "vui long nhap ghi chu", Toast.LENGTH_SHORT).show();
-//                }else {
-//                    database.QueryData("INSERT INTO GhichuThuNhap VALUES(null,'"+TextGhiChu+"','"+date+"')");
-//                    GetDataGhiChu();
-//                }
-//            }
-//        });
-//    }
 
     void handlePriceInput()
     {
@@ -223,8 +91,7 @@ public class AddOneFragment extends Fragment {
                     DBGiaoDich.them(income);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
 
-                    FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                    fm.detach(thisFrag).attach(thisFrag).commit();
+                    getActivity().finish();
                 }
             }
         });

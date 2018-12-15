@@ -79,7 +79,7 @@ public class DBGiaoDich {
     }
 
     public static ArrayList<ClassGiaoDich> getByDate(Date date) {
-        String dateStr = (new SimpleDateFormat("dd/MM/yyyy")).format(date);
+        String dateStr = DateFormat.format(date);
         Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoi_gian = '" + dateStr + "'", null);
 
         Log.d("query", dateStr + " : " + cursor.getCount());
@@ -93,7 +93,7 @@ public class DBGiaoDich {
      * @return ClassGiaoDich ung voi id do
      */
     public static ClassGiaoDich getById(int id) {
-        Cursor cursor = db.rawQuery("SELECT * FROM giaodich WHERE id = " + id, null);
+        Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE id = " + id, null);
         ArrayList<ClassGiaoDich> res = cursorToArray(cursor);
         if (res.size() == 0)
             return null;
@@ -103,9 +103,9 @@ public class DBGiaoDich {
     public static ArrayList<ClassGiaoDich> getByMonth(int month, int year) {
         String yearStr = "" + year;
         String monthStr = (month > 9) ? ("" + month) : ("0" + month);
-        String[] args = { monthStr + "/" + yearStr };
+        String pattern = "'%/" + monthStr + "/" + yearStr + "'";
 
-        Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoigian LIKE '%?'", args);
+        Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoi_gian LIKE " + pattern, null);
         return cursorToArray(cursor);
     }
 

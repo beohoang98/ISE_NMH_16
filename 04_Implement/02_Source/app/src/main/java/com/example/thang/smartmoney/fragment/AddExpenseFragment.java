@@ -99,9 +99,7 @@ public class AddExpenseFragment extends Fragment {
                     ClassExpense outcome = new ClassExpense(date, price, category_id, note);
                     DBGiaoDich.them(outcome);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
-
-                    FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                    fm.detach(thisFrag).attach(thisFrag).commit();
+                    getActivity().finish();
                 }
             }
         });

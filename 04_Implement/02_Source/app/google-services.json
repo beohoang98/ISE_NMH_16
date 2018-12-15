@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "731936190192",
+    "firebase_url": "https://smart-money-beo.firebaseio.com",
+    "project_id": "smart-money-beo",
+    "storage_bucket": "smart-money-beo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731936190192:android:7ea618b6109c7486",
+        "android_client_info": {
+          "package_name": "com.example.thang.smartmoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731936190192-80cg9s5rjg0kdg3uml1gjo2ps5uqqguq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thang.smartmoney",
+            "certificate_hash": "64dae4afe7e3b31e0f4a3c12cbade909d417f18d"
+          }
+        },
+        {
+          "client_id": "731936190192-insi3v3mdeesposti09k34kc70lhih1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0YkiQw5BtdtaST4ecAdsjpA8s1JI1s2w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731936190192-insi3v3mdeesposti09k34kc70lhih1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731936190192:android:9ec63ce670ae676d",
+        "android_client_info": {
+          "package_name": "io.github.beohoang98.smartmoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731936190192-insi3v3mdeesposti09k34kc70lhih1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0YkiQw5BtdtaST4ecAdsjpA8s1JI1s2w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
