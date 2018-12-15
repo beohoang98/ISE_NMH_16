@@ -1,5 +1,6 @@
 package com.example.thang.smartmoney.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.ListTransactionHomeAdapter;
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.database.DBVi;
+import com.example.thang.smartmoney.edit_giaodich;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
 import com.example.thang.smartmoney.xulysukien.DateFormat;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
@@ -23,7 +26,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Fragment_TransListByTime extends Fragment {
+public class Fragment_TransListByTime extends Fragment
+    implements ListView.OnItemClickListener
+{
     private View view;
     private ListView listView;
     private TextView titleView;
@@ -64,8 +69,8 @@ public class Fragment_TransListByTime extends Fragment {
         listTransactions = new ArrayList<>();
 
         adapter = new ListTransactionHomeAdapter(getActivity(), listTransactions);
-
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
     void showData() {
@@ -91,5 +96,16 @@ public class Fragment_TransListByTime extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        startActivityForResult(new Intent(getActivity(), edit_giaodich.class), 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        adapter.notifyDataSetChanged();
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

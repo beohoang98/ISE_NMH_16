@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.button.MaterialButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,13 +11,13 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.CategorySpinnerAdapter;
 import com.example.thang.smartmoney.adapter.ListTransactionHomeAdapter;
-import com.example.thang.smartmoney.database.DBIncome;
+import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassExpense;
 import com.example.thang.smartmoney.xulysukien.KiemTraInput;
@@ -35,7 +34,7 @@ public class AddExpenseFragment extends Fragment {
     mPriceInput priceInput;
     TextInputEditText noteText;
 
-    MaterialButton buttonAdd;
+    Button buttonAdd;
 
     ListTransactionHomeAdapter adapter;
     Calendar calendar;
@@ -53,7 +52,7 @@ public class AddExpenseFragment extends Fragment {
     public void AnhXa() {
         calendar = Calendar.getInstance();
         categorySpinner = view.findViewById(R.id.frag_expense_spinner);
-        categorySpinnerAdapter = new CategorySpinnerAdapter(getContext());
+        categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.EXPENSE);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
         noteText = view.findViewById(R.id.frag_expense_note);
@@ -98,11 +97,9 @@ public class AddExpenseFragment extends Fragment {
 
                 if (validator.KiemTraGiaTien(price) && validator.KiemTraCategory(category_id)) {
                     ClassExpense outcome = new ClassExpense(date, price, category_id, note);
-                    DBIncome.them(outcome);
+                    DBGiaoDich.them(outcome);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
-
-                    FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                    fm.detach(thisFrag).attach(thisFrag).commit();
+                    getActivity().finish();
                 }
             }
         });

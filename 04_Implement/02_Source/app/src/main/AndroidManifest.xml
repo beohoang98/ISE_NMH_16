@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thang.smartmoney">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/lo_go"
@@ -18,7 +20,13 @@
         </activity>
         <activity android:name=".Login_Activity" />
         <activity android:name=".Signup_Activity" />
-        <activity android:name=".home_activity"></activity>
+        <activity android:name=".home_activity" />
+        <activity android:name=".category_activity" />
+        <activity
+            android:name=".ThemGiaoDich"
+            android:label="@string/title_activity_them_giao_dich"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".edit_giaodich"/>
     </application>
 
 </manifest>
