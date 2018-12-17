@@ -37,4 +37,9 @@
 
     <string name="thongke_title">Thống kê</string>
     <string name="thongke_nodata">Chưa có dữ liệu để thống kê</string>
+    <string name="error_message">Đã có lỗi xảy ra: </string>
+    <string name="skip_login">Không, tôi muốn sử dụng offline</string>
+
+    <string name="saving_title">Tiết kiệm</string>
+    <string name="budget_title">Ngân sách</string>
 </resources>

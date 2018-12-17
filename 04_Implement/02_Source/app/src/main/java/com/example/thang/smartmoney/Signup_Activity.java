@@ -54,10 +54,16 @@ public class Signup_Activity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(Signup_Activity.this, "dang ki thanh cong", Toast.LENGTH_SHORT).show();
+
                                 Intent intent = new Intent(Signup_Activity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                                 startActivity(intent);
+                                finish();
                             } else {
-                                Toast.makeText(Signup_Activity.this, "loi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Signup_Activity.this
+                                        ,getString(R.string.error_message) + task.getException().getMessage()
+                                        ,Toast.LENGTH_SHORT)
+                                        .show();
                             }
                         }
                     });

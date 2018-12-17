@@ -1,11 +1,13 @@
 package com.example.thang.smartmoney.xulysukien;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -22,6 +24,11 @@ public class mPriceInput implements TextWatcher {
         editText = view.findViewById(inputId);
         editText.addTextChangedListener(this);
         fmt = new DecimalFormat("#,###");
+    }
+
+    public mPriceInput(Activity activity, int inputId)
+    {
+        this(((ViewGroup)activity.findViewById(android.R.id.content)).getChildAt(0), inputId);
     }
 
     public int getPrice()

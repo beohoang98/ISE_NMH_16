@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/home/noobcoder/1_App/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_pie_chart_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/home/noobcoder/1_App/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_chevron_left_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,9 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_pie" />
+                            <entry key="outputName" value="ic_chevron_left" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$APPLICATION_HOME_DIR$/bin/C:\Users\NoobCoder" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/piggy-bank.svg" />
                           </map>
                         </option>
                       </PersistentState>

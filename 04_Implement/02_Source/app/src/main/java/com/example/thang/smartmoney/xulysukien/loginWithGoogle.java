@@ -65,7 +65,7 @@ public class loginWithGoogle implements View.OnClickListener {
         }
     }
 
-    private void firebaseAuth(GoogleSignInAccount account) {
+    private void firebaseAuth(final GoogleSignInAccount account) {
         Log.d("google-signin", "firebaseAuthWithGoogle:" + account.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
@@ -79,7 +79,9 @@ public class loginWithGoogle implements View.OnClickListener {
                             MainActivity.mUser = mAuth.getCurrentUser();
 
                             Intent homeIntent = new Intent(mView.getContext(), home_activity.class);
+                            homeIntent.setFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME | Intent.FLAG_ACTIVITY_NEW_TASK);
                             activity.startActivity(homeIntent);
+                            activity.finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("google-signin", "signInWithCredential:failure", task.getException());
