@@ -26,11 +26,15 @@ import java.util.concurrent.Callable;
 
 public class FirebaseSync {
 
+    private static Context context;
+
     private static FirebaseUser user;
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference reference;
     private static SQLiteDatabase dbinstance;
     private static ArrayMap<String, Callable> funcs;
+
+    private static boolean _isLogin = false;
 
     public static String[] DATA_TABLE = {"giaodich", "category", "vi", "ngan_sach"};
 
@@ -41,14 +45,22 @@ public class FirebaseSync {
 
     public static void Init(Context ctx)
     {
-        dbinstance = Database.getInstance(ctx).getWritableDatabase();
+        context = ctx.getApplicationContext();
+        funcs = new ArrayMap<>();
+        reinit();
+    }
 
-        if (user == null) user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
+    public static boolean isLogin() {return _isLogin;}
 
-        if (firebaseDatabase == null) firebaseDatabase = FirebaseDatabase.getInstance();
+    static void reinit() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) _isLogin = true;
+        else return;
 
-        reference = firebaseDatabase.getReference(uid);
+        dbinstance = Database.getInstance(context).getWritableDatabase();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        reference = firebaseDatabase.getReference(user.getUid());
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,31 +75,32 @@ public class FirebaseSync {
 
             }
         });
-
-        funcs = new ArrayMap<>();
     }
 
-    public static FirebaseUser getUser() throws RuntimeException
+    public static FirebaseUser getUser()
     {
-        if (user == null) throw new RuntimeException("FirebaseUser is not init");
+        reinit();
         return user;
     }
 
     private static FirebaseDatabase getDatabase() throws RuntimeException
     {
-        if (firebaseDatabase == null) throw new RuntimeException("FirebaseDatabase is not init");
+        reinit();
+        if (firebaseDatabase == null) throw new RuntimeException("init failed");
         return firebaseDatabase;
     }
 
     private static SQLiteDatabase getDbinstance() throws RuntimeException
     {
-        if (dbinstance == null) throw new RuntimeException("FirebaseDatabase is not init");
+        reinit();
+        if (dbinstance == null) throw new RuntimeException("init failed");
         return dbinstance;
     }
 
     private static DatabaseReference getReference() throws RuntimeException
     {
-        if (reference == null) throw new RuntimeException("FirebaseDatabase is not init");
+        reinit();
+        if (reference == null) throw new RuntimeException("init failed");
         return reference;
     }
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import com.example.thang.smartmoney.R;
@@ -32,6 +33,7 @@ public class mDatePickerClick implements View.OnClickListener, DatePickerDialog.
         mCtx = view.getContext();
         this.editText = view.findViewById(editTextId);
         this.editText.setOnClickListener(this);
+        this.editText.setFocusable(false);
 
         fmt = new SimpleDateFormat(mCtx.getString(R.string.date_format));
 
@@ -42,6 +44,11 @@ public class mDatePickerClick implements View.OnClickListener, DatePickerDialog.
 
         // mac dinh la ngay hom nay
         editText.setText(fmt.format(cal.getTime()));
+    }
+
+    public mDatePickerClick(Activity activity, int editTextId) {
+        this(((ViewGroup)activity.findViewById(android.R.id.content)).getChildAt(0),
+                editTextId);
     }
 
     public Date getDate()

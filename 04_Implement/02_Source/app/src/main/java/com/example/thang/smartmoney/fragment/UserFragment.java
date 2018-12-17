@@ -39,6 +39,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseSync.Init(getContext());
+        if (!FirebaseSync.isLogin()) {
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
+        }
     }
 
     public void AnhXa() {
@@ -67,6 +71,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user, container, false);
 
+        if (!FirebaseSync.isLogin()) return view;
+
         avatar_url = FirebaseSync.getUser().getPhotoUrl();
         username = FirebaseSync.getUser().getDisplayName();
         email = FirebaseSync.getUser().getEmail();
@@ -81,7 +87,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public void LogOut() {
         MainActivity.mAuth.signOut();
         Intent login = new Intent(getActivity(), MainActivity.class);
+        login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         startActivity(login);
+        getActivity().finish();
     }
 
     @Override

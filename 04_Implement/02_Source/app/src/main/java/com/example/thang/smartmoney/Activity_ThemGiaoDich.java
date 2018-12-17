@@ -1,5 +1,6 @@
 package com.example.thang.smartmoney;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,7 +23,7 @@ import android.widget.TextView;
 import com.example.thang.smartmoney.fragment.AddExpenseFragment;
 import com.example.thang.smartmoney.fragment.AddOneFragment;
 
-public class ThemGiaoDich extends AppCompatActivity {
+public class Activity_ThemGiaoDich extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -46,6 +47,7 @@ public class ThemGiaoDich extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -58,8 +60,6 @@ public class ThemGiaoDich extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-
     }
 
 
@@ -78,7 +78,8 @@ public class ThemGiaoDich extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_category) {
+            startActivity(new Intent(this, category_activity.class));
             return true;
         }
 
