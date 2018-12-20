@@ -55,6 +55,8 @@ public class AddExpenseFragment extends Fragment {
         categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.EXPENSE);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
+        categorySpinner.setPrompt(getString(R.string.category_title));
+
         noteText = view.findViewById(R.id.frag_expense_note);
         handlePriceInput();
         handleDateInput();

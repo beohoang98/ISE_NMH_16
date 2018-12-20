@@ -28,6 +28,7 @@ public class CategorySpinnerAdapter extends BaseAdapter {
         this.activity = activity;
         mContext = activity.getApplicationContext();
         mLayoutInflater = LayoutInflater.from(mContext);
+        ClassCategory.loadFromDB(mContext);
         this.type = type;
         dataList = ClassCategory.getByType(type);
     }

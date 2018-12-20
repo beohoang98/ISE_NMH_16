@@ -42,4 +42,8 @@
 
     <string name="saving_title">Tiết kiệm</string>
     <string name="budget_title">Ngân sách</string>
+
+    <string name="price_label">đ</string>
+    <string name="thongke_month_description">Thống kê theo từng ngày trong tháng</string>
+    <string name="thongke_piechart">Thống kê theo phân loại</string>
 </resources>

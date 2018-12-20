@@ -53,6 +53,7 @@ public class AddOneFragment extends Fragment {
         categorySpinner = view.findViewById(R.id.frag_income_spinner);
         categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.INCOME);
         categorySpinner.setAdapter(categorySpinnerAdapter);
+        categorySpinner.setPrompt(getString(R.string.category_title));
 
         noteText = view.findViewById(R.id.frag_income_note);
 

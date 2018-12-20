@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.thang.smartmoney.database.Database;
 import com.example.thang.smartmoney.fragment.HomeFragment;
 import com.example.thang.smartmoney.fragment.UserFragment;
 import com.example.thang.smartmoney.fragment.fragment_thongke;
 import com.example.thang.smartmoney.fragment.fragment_tietkiem_ngansach;
+import com.example.thang.smartmoney.model.ClassCategory;
 
 public class home_activity extends AppCompatActivity
     implements TabLayout.OnTabSelectedListener,
@@ -43,6 +45,9 @@ public class home_activity extends AppCompatActivity
         setContentView(R.layout.activity_home_activity);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.addOnTabSelectedListener(this);
+
+        // init database
+        Database.getInstance(getBaseContext());
 
         // disable center tab
         ((ViewGroup)tabLayout.getChildAt(0))
