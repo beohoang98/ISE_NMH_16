@@ -29,6 +29,7 @@ public class ListTransactionHomeAdapter extends BaseAdapter {
         activity = _activity;
         this.context = activity.getBaseContext();
         this.layoutInflater = LayoutInflater.from(context);
+        ClassCategory.loadFromDB(activity);
     }
 
 
