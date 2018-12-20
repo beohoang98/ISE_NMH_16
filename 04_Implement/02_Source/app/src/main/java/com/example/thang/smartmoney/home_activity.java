@@ -24,9 +24,6 @@ public class home_activity extends AppCompatActivity
     implements TabLayout.OnTabSelectedListener,
         View.OnClickListener
 {
-
-//    ImageButton imgbtnhome1, imgbtnadd1, imgbtnrecom1, imgbtnuser1, btnCategory;
-
     final int ADD_RESULT_CODE = 0;
 
     // fragment position
@@ -35,6 +32,8 @@ public class home_activity extends AppCompatActivity
     final int FRAGMENT_DISABLED = 2;
     final int FRAGMENT_SAVING_BUDGET = 3;
     final int FRAGMENT_USER = 4;
+
+    int stateResume = -1;
 
     TabLayout tabLayout;
     ImageButton addBtn;
@@ -64,8 +63,6 @@ public class home_activity extends AppCompatActivity
     }
 
     public void switchToPage(int pos) {
-        switchButtonDefault();
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = null;
@@ -117,22 +114,18 @@ public class home_activity extends AppCompatActivity
         }
     }
 
-    void switchButtonDefault() {
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (this.stateResume == ADD_RESULT_CODE) {
+            this.stateResume = -1;
+            tabLayout.getTabAt(FRAGMENT_HOME).select();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
-            switch (requestCode) {
-                case ADD_RESULT_CODE:
-                    tabLayout.getTabAt(FRAGMENT_HOME).select();
-                    break;
-            }
-        } catch (Exception e) {
-            Log.d("ignore-error", e.getMessage());
-            // ignore this error
-        }
+        this.stateResume = requestCode;
     }
 
 }

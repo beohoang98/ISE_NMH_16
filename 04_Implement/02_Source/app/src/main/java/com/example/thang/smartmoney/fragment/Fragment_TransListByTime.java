@@ -22,9 +22,10 @@ import com.example.thang.smartmoney.model.ClassGiaoDich;
 import com.example.thang.smartmoney.xulysukien.DateFormat;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Fragment_TransListByTime extends Fragment
     implements ListView.OnItemClickListener
@@ -71,6 +72,19 @@ public class Fragment_TransListByTime extends Fragment
         adapter = new ListTransactionHomeAdapter(getActivity(), listTransactions);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
+
+        Calendar thisDate = Calendar.getInstance(TimeZone.getTimeZone("GMT+7"));
+        thisDate.setTime(date);
+
+        Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT+7"));
+        Calendar yesterday = (Calendar)now.clone();
+        yesterday.add(Calendar.DAY_OF_MONTH, -1);
+
+        if (thisDate.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)) {
+            this.dateStr = getContext().getString(R.string.date_today);
+        } else if (thisDate.get(Calendar.DAY_OF_YEAR) == yesterday.get(Calendar.DAY_OF_YEAR)) {
+            this.dateStr = getContext().getString(R.string.date_yesterday);
+        }
     }
 
     void showData() {
@@ -79,8 +93,8 @@ public class Fragment_TransListByTime extends Fragment
         int tong = tongIncome - tongOutcome;
 
         titleView.setText(dateStr);
-        sumIncomeText.setText("+" + PriceFormat.format(tongIncome));
-        sumOutcomeText.setText("-" + PriceFormat.format(tongOutcome));
+        sumIncomeText.setText("+ " + PriceFormat.format(tongIncome));
+        sumOutcomeText.setText("- " + PriceFormat.format(tongOutcome));
         sumTotalText.setText(PriceFormat.format(tong));
         if (tong >= 0) {
             sumTotalText.setTextColor(ContextCompat.getColor(view.getContext(), R.color.income));
