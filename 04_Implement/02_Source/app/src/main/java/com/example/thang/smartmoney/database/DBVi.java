@@ -68,4 +68,8 @@ public class DBVi {
 
         return cursor.getInt(0);
     }
+
+    public static void close() {
+        db.close();
+    }
 }

@@ -1,102 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <FrameLayout
-        android:id="@+id/framecontent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9">
+        android:orientation="vertical"
+        android:weightSum="10"
+        >
 
-        <fragment
-            android:id="@+id/fragment"
-            android:name="com.example.thang.smartmoney.fragment.HomeFragment"
+        <FrameLayout
+            android:id="@+id/framecontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="0dp"
+            android:layout_weight="9">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.04"
-        android:background="#DFD2CE">
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.96"
-        android:weightSum="4"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@null">
-
-            <ImageButton
-                android:onClick="addfragment"
-                android:id="@+id/imgbtnhome"
+            <fragment
+                android:id="@+id/fragment"
+                android:name="com.example.thang.smartmoney.fragment.HomeFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/home_on" />
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@null">
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabIndicatorHeight="@dimen/appbar_padding_top"
+            app:tabIndicatorColor="@color/colorPrimary"
+            android:id="@+id/tabs"
+            app:tabSelectedTextColor="@android:color/black"
+            app:tabTextColor="@android:color/darker_gray">
 
-            <ImageButton
-                android:id="@+id/imgbtnadd"
-                android:onClick="addfragment"
+            <!-- For Test in view -->
+
+            <android.support.design.widget.TabItem
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/add_off" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_home"
+                android:id="@+id/tab_home"/>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@null">
-
-            <ImageButton
-                android:id="@+id/imgbtnrecom"
-                android:onClick="addfragment"
+            <android.support.design.widget.TabItem
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/recom_off" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_pie"
+                android:id="@+id/tab_thongke"/>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@null">
-
-            <ImageButton
-                android:id="@+id/imgbtnuser"
-                android:onClick="addfragment"
+            <android.support.design.widget.TabItem
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/user_off" />
-        </LinearLayout>
+                android:layout_height="wrap_content" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_monetization"
+                android:id="@+id/tab_saving"/>
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_person"
+                android:id="@+id/tab_user"/>
+
+        </android.support.design.widget.TabLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/circle"
+        android:elevation="5dp"
+        android:translationZ="5dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_add_circle"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
+
 

@@ -23,7 +23,6 @@
                 android:layout_height="wrap_content"
                 android:text="Số dư: "
                 android:textSize="18sp"
-                android:textFontWeight="700"
                 android:layout_marginRight="15sp"
                 android:textColor="@color/color_while"/>
             <TextView

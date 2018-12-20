@@ -19,15 +19,18 @@
             android:layout_gravity="center">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:text="05/12/2018"
                 android:id="@+id/frag.trans_list.date-title"
                 android:inputType="datetime"
+                android:gravity="center"
                 android:textSize="20sp"
-                android:fontFamily="sans-serif-condensed"/>
+                android:fontFamily="sans-serif-condensed"
+                android:drawableStart="@drawable/ic_chevron_left"
+                android:drawableEnd="@drawable/ic_chevron_right"/>
 
         </LinearLayout>
 
@@ -36,10 +39,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:elevation="10dp"
-        android:translationZ="10dp"
+        android:padding="9dp"
+        android:layout_margin="9dp"
+        android:elevation="2dp"
+        android:translationZ="2dp"
         android:background="@drawable/custom_card"
         android:orientation="vertical">
 

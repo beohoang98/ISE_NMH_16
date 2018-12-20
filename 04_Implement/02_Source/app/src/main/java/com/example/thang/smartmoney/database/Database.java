@@ -14,8 +14,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Database extends SQLiteOpenHelper {
-    private static final String DBNAME = "SmartMoney.sqlite";
-    private static final int DBVERSION = 3;
+    private static String DBNAME = "SmartMoney.sqlite";
+    public static final String DBNAME_TEST = "SmartMoney.sqlite.test";
+
+    private static int DBVERSION = 3;
+    public static final int TESTVERSION = 1;
+
     private static Database mInstance = null;
     private Context mContext;
 
@@ -24,9 +28,17 @@ public class Database extends SQLiteOpenHelper {
         this.mContext = context;
     }
 
+    /**
+     * DUng de khoi tao cho unit test, tao database rieng va version rieng
+     */
+    public static void initForTest() {
+        DBNAME = DBNAME_TEST;
+        DBVERSION = TESTVERSION;
+    }
+
     public static Database getInstance(Context ctx) {
         if (mInstance == null) {
-            mInstance = new Database(ctx.getApplicationContext());
+            mInstance = new Database(ctx);
         }
         return mInstance;
     }
@@ -75,7 +87,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion)
+        if (newVersion > oldVersion || newVersion == TESTVERSION) // 1 la cho test & debug
         {
             Log.d("database", "Upgrade from version " + oldVersion + " to " + newVersion);
 
@@ -85,14 +97,13 @@ public class Database extends SQLiteOpenHelper {
                 db.execSQL("DROP TABLE IF EXISTS vi");
                 db.execSQL("DROP TABLE IF EXISTS ngan_sach");
 
-                Log.d("database", "Upgrade success");
-
+                Log.d("database", "Clear old database");
                 onCreate(db);
+                Log.d("database", "Update success database");
             } catch (SQLException e)
             {
                 Log.e("database", "Upgrade fail: " + e.getMessage());
             }
-
         }
     }
 }

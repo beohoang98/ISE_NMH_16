@@ -1,12 +1,13 @@
 package com.example.thang.smartmoney.model;
 
 import android.content.ContentValues;
+import android.support.annotation.Nullable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ClassGiaoDich {
+public class ClassGiaoDich implements Comparable {
     public int id;
     public String thoigian;
     public int sotien;
@@ -22,7 +23,7 @@ public class ClassGiaoDich {
         this.category_id = val.getAsInteger("category_id");
         this.note = val.getAsString("note");
         this.from_id = val.getAsInteger("from_id");
-        this.to_id = val.getAsInteger("from_id");
+        this.to_id = val.getAsInteger("to_id");
     }
 
     public ClassGiaoDich(Date thoigian, int sotien, int category_id, String note, int from_id, int to_id) {
@@ -34,8 +35,15 @@ public class ClassGiaoDich {
         this.to_id = to_id;
     }
 
+    public ClassGiaoDich(ClassGiaoDich other)
+    {
+        this(other.getContentValues());
+    }
+
     public ContentValues getContentValues() {
         ContentValues val = new ContentValues();
+        val.put("id", id);
+
         val.put("thoi_gian", thoigian);
         val.put("so_tien", sotien);
         val.put("category_id", category_id);
@@ -45,5 +53,22 @@ public class ClassGiaoDich {
         val.put("to_id", to_id);
 
         return val;
+    }
+
+    @Override
+    public boolean equals(Object _obj) {
+        ClassGiaoDich obj = (ClassGiaoDich)_obj;
+        return (id == obj.id)
+                && (thoigian.equals(obj.thoigian))
+                && (sotien == obj.sotien)
+                && (note.equals(obj.note))
+                && (category_id == obj.category_id)
+                && (from_id == obj.from_id)
+                && (to_id == obj.to_id);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return (this.equals(o))?1:0;
     }
 }

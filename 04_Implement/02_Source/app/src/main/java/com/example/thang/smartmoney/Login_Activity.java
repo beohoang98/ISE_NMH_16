@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,22 +48,32 @@ public class Login_Activity extends AppCompatActivity {
         String user=edtuser.getText().toString();
         String pass=edtpass.getText().toString();
         mAuth.signInWithEmailAndPassword(user, pass)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task)
+                {
+                    if(task.isSuccessful())
                     {
-                        if(task.isSuccessful())
-                        {
-                            //                  FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                            Intent intent=new Intent(Login_Activity.this,home_activity.class);
-                            startActivity(intent);
-                        }
-                        else
-                        {
-                            Toast.makeText(Login_Activity.this, "loi dang nhap", Toast.LENGTH_SHORT).show();
-                        }
+                        //                  FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                        Intent intent=new Intent(Login_Activity.this,home_activity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                        startActivity(intent);
+                        finish();
                     }
-                });
+                    else
+                    {
+                        Toast.makeText(Login_Activity.this, "loi dang nhap" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(Login_Activity.this
+                            ,getString(R.string.error_message) + e.getMessage()
+                            ,Toast.LENGTH_LONG)
+                            .show();
+                }
+        });
 
     }
 }
