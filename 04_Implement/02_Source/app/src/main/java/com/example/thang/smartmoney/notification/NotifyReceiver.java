@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import com.example.thang.smartmoney.R;
@@ -18,7 +20,7 @@ public class NotifyReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent repeatIntent = new Intent(context, home_activity.class);
-        repeatIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        repeatIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context,
                 NotifyService.CODE,
@@ -31,11 +33,12 @@ public class NotifyReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.lo_go)
+                .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
                 .setContentTitle(context.getString(R.string.app_name))
-                .setContentText("Hello world!")
+                .setContentText(context.getString(R.string.reminder_content))
                 .setOngoing(true)
                 .setDefaults(Notification.DEFAULT_ALL)
+                .setDefaults(Notification.DEFAULT_SOUND)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setAutoCancel(true);
 

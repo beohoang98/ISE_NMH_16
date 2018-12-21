@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,13 @@ import com.example.thang.smartmoney.fragment.HomeFragment;
 import com.example.thang.smartmoney.fragment.UserFragment;
 import com.example.thang.smartmoney.fragment.fragment_thongke;
 import com.example.thang.smartmoney.fragment.fragment_tietkiem_ngansach;
-import com.example.thang.smartmoney.model.ClassCategory;
 
 public class home_activity extends AppCompatActivity
     implements TabLayout.OnTabSelectedListener,
         View.OnClickListener
 {
-    final int ADD_RESULT_CODE = 0;
+    public static final int ADD_REQUEST_CODE = 0;
+    public static final int EDIT_REQUEST_CODE = 1;
 
     // fragment position
     final int FRAGMENT_HOME = 0;
@@ -70,6 +69,7 @@ public class home_activity extends AppCompatActivity
         switch (pos) {
             case FRAGMENT_HOME:
                 fragment = new HomeFragment();
+                ((HomeFragment)fragment).updateChangedData();
                 break;
             case FRAGMENT_THONGKE:
                 fragment = new fragment_thongke();
@@ -109,7 +109,7 @@ public class home_activity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addBtn:
-                startActivityForResult(new Intent(getBaseContext(), Activity_ThemGiaoDich.class), ADD_RESULT_CODE);
+                startActivityForResult(new Intent(getBaseContext(), Activity_ThemGiaoDich.class), ADD_REQUEST_CODE);
                 break;
         }
     }
@@ -117,15 +117,14 @@ public class home_activity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if (this.stateResume == ADD_RESULT_CODE) {
-            this.stateResume = -1;
+        if (this.stateResume == ADD_REQUEST_CODE || this.stateResume == EDIT_REQUEST_CODE) {
             tabLayout.getTabAt(FRAGMENT_HOME).select();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        this.stateResume = requestCode;
+        if (resultCode > 0) this.stateResume = requestCode;
     }
 
 }

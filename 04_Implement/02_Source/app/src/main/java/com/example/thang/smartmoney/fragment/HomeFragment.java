@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.Fragment_TransListByTime_Adapter;
+import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.database.DBVi;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
@@ -31,6 +32,8 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         calender = Calendar.getInstance();
         DBVi.init(getContext());
+        DBGiaoDich.init(getContext());
+        adapter = new Fragment_TransListByTime_Adapter(getChildFragmentManager());
     }
 
     @Nullable
@@ -40,11 +43,14 @@ public class HomeFragment extends Fragment {
 
         AnhXa();
 
-        adapter = new Fragment_TransListByTime_Adapter(getChildFragmentManager());
         mViewPager.setAdapter(adapter);
         mViewPager.setCurrentItem(1);
 
         return view;
+    }
+
+    public void updateChangedData() {
+//        adapter.notifyDataSetChanged();
     }
 
     private void AnhXa() {

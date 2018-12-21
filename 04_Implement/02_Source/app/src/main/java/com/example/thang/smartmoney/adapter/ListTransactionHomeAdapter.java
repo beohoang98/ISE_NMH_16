@@ -2,7 +2,9 @@ package com.example.thang.smartmoney.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,56 +20,50 @@ import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.ArrayList;
 
-public class ListTransactionHomeAdapter extends BaseAdapter {
+public class ListTransactionHomeAdapter extends RecyclerView.Adapter<ListTransactionHomeAdapter.ViewHolder> {
     private ArrayList<ClassGiaoDich> list;
     private Context context;
-    private LayoutInflater layoutInflater;
     private Activity activity;
+    private OnClickListener onClickListener;
 
-    public ListTransactionHomeAdapter(Activity _activity, ArrayList<ClassGiaoDich> ghiChuList) {
+    public ListTransactionHomeAdapter(Activity act, ArrayList<ClassGiaoDich> ghiChuList) {
         this.list = ghiChuList;
-        activity = _activity;
+        activity = act;
         this.context = activity.getBaseContext();
-        this.layoutInflater = LayoutInflater.from(context);
         ClassCategory.loadFromDB(activity);
     }
 
-
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return list.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return list.get(position);
-    }
-
-    @Override
     public long getItemId(int position) {
-        return position;
+        return list.get(position).id;
+    }
+
+    public void setOnItemSelected(OnClickListener onItemSelected) {
+        this.onClickListener = onItemSelected;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View convertView = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.custom_transaction_item, parent, false);
+
+        ViewHolder holder = new ViewHolder(convertView);
+        return holder;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.custom_transaction_item, null);
-            holder = new ViewHolder();
-            holder.icon = convertView.findViewById(R.id.transaction_list_icon);
-            holder.category = convertView.findViewById(R.id.transaction_list_category);
-            holder.price = convertView.findViewById(R.id.transaction_list_price);
-            holder.note = convertView.findViewById(R.id.transaction_list_note);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ClassGiaoDich addGhiChu = this.list.get(position);
-
         ClassCategory category = ClassCategory.getById(addGhiChu.category_id);
         if (category == null) {
-            return convertView;
+            return;
         }
 
         int iconId = context.getResources().getIdentifier(category.icon_url, "drawable", context.getPackageName());
@@ -88,15 +84,32 @@ public class ListTransactionHomeAdapter extends BaseAdapter {
             holder.price.setTextColor(ContextCompat.getColor(context, R.color.expense));
             holder.price.setText("-" + holder.price.getText());
         }
-
-        return convertView;
     }
 
+    class ViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener
+    {
 
-    static class ViewHolder {
         ImageView icon;
         TextView category;
         TextView price;
         TextView note;
+        public ViewHolder(View view) {
+            super(view);
+            view.setOnClickListener(this);
+            icon = view.findViewById(R.id.transaction_list_icon);
+            category = view.findViewById(R.id.transaction_list_category);
+            price = view.findViewById(R.id.transaction_list_price);
+            note = view.findViewById(R.id.transaction_list_note);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onClickListener.onClick(view, getAdapterPosition());
+        }
+    }
+
+    public interface OnClickListener {
+        void onClick(View view, int position);
     }
 }

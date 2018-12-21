@@ -92,6 +92,7 @@ public class AddOneFragment extends Fragment {
                     DBGiaoDich.them(income);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
 
+                    getActivity().setResult(1);
                     getActivity().finish();
                 }
             }

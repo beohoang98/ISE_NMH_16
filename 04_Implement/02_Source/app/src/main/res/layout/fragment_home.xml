@@ -24,11 +24,11 @@
                 android:text="Số dư: "
                 android:textSize="18sp"
                 android:layout_marginRight="15sp"
-                android:textColor="@color/color_while"/>
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_while"
+                android:textColor="@color/white"
                 android:text="0,000"
                 android:textSize="20sp"
                 android:id="@+id/home_sodu"/>
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:background="@color/color_while">
+        android:background="@color/white">
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"

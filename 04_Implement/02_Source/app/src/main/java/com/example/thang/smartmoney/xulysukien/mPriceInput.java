@@ -44,6 +44,10 @@ public class mPriceInput implements TextWatcher {
         return valueNum;
     }
 
+    public void setPrice(int price) {
+        editText.setText(fmt.format(price));
+    }
+
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
 

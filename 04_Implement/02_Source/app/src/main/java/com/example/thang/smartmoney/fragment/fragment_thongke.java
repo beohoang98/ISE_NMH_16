@@ -2,18 +2,14 @@ package com.example.thang.smartmoney.fragment;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.graphics.Paint;
-import android.icu.text.Normalizer2;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,18 +18,11 @@ import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
-import com.example.thang.smartmoney.xulysukien.DateFormat;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -46,13 +35,11 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class fragment_thongke extends Fragment {
 
@@ -125,7 +112,7 @@ public class fragment_thongke extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("thongke", "Choose " + i);
                 ((TextView)adapterView.getChildAt(0))
-                        .setTextColor(getResources().getColor(android.R.color.white));
+                        .setTextColor(getResources().getColor(android.R.color.white,null));
 
                 Calendar cal = Calendar.getInstance();
                 cal.setTime((Date)adapter.getItem(i));
@@ -151,10 +138,10 @@ public class fragment_thongke extends Fragment {
 
         LineDataSet dataSetExpense = getLineDataSetOf(holder.expenseEachDay,
                                 getString(R.string.expense_title),
-                                getResources().getColor(R.color.expense));
+                                getResources().getColor(R.color.expense, null));
         LineDataSet dataSetIncome = getLineDataSetOf(holder.incomeEachDay,
                 getString(R.string.income_title),
-                getResources().getColor(R.color.income));
+                getResources().getColor(R.color.income, null));
 
         LineData barData = new LineData(dataSetExpense, dataSetIncome);
 

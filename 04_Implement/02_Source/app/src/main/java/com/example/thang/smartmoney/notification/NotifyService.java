@@ -10,31 +10,42 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
+import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
 
 import static android.content.Context.ALARM_SERVICE;
 
 public class NotifyService {
+    private final String TAG = "notify";
+
     public static final int CODE = 100;
+    private static AlarmManager alarmManager;
+    private static NotifyService instance;
+
     private Context context;
     private Intent intent;
     private PendingIntent pendingIntent;
     private boolean notify = false;
 
-    public NotifyService(Context context) {
-        this.context = context;
-        intent = new Intent(context, NotifyReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(context, CODE, intent, PendingIntent.FLAG_NO_CREATE);
-
-        NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        StatusBarNotification[] list = notificationManager.getActiveNotifications();
-        for (StatusBarNotification statusBarNotification : list) {
-            if (statusBarNotification.getId() == NotifyService.CODE) {
-                notify = true;
-                break;
-            }
+    public static NotifyService getInstance(@NotNull Context context) {
+        if (instance == null) {
+            instance = new NotifyService(context.getApplicationContext());
         }
+        return instance;
+    }
+
+    public NotifyService(@NotNull Context ctx) {
+        context = ctx.getApplicationContext();
+        alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
+        NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        intent = new Intent(context, NotifyReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(context, NotifyService.CODE, intent, PendingIntent.FLAG_NO_CREATE);
+
+        notify = pendingIntent != null;
     }
 
     public boolean isNotify() {
@@ -42,30 +53,28 @@ public class NotifyService {
     }
 
     public void turnOn(int hours, int minute, int second) {
+        if (notify) {
+            Log.d(TAG, "Alarm clock was turned on");
+            Toast.makeText(context, "Alarm clock was turned on", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        pendingIntent = PendingIntent.getBroadcast(context, NotifyService.CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hours);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, second);
-
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-        pendingIntent = PendingIntent.getBroadcast(context, CODE, intent, PendingIntent.FLAG_NO_CREATE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,
+//                1000*60,
                 pendingIntent);
-        Log.d("notify", "turn on");
+        Log.d(TAG, "turn on");
     }
 
     public void turnOff() {
-        PendingIntent checkIntent = PendingIntent.getBroadcast(context, CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        checkIntent.cancel();
-
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-        alarmManager.cancel(checkIntent);
-
-        NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(CODE);
-
-        Log.d("notify", "turn off");
+        pendingIntent.cancel();
+        alarmManager.cancel(pendingIntent);
+        Log.d(TAG, "turn off");
     }
 }

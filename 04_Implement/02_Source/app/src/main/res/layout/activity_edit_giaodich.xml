@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
             app:titleTextColor="@android:color/white"
-            app:subtitleTextColor="@android:color/white">
+            app:subtitleTextColor="@android:color/white"
+            app:title="Sua giao dich">
 
         </android.support.v7.widget.Toolbar>
 

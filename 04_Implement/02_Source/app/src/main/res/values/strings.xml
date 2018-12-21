@@ -53,4 +53,11 @@
     <string name="delete_title">Xóa</string>
     <string name="update_title">Cập nhật</string>
     <string name="add_title">Thêm</string>
+
+    <string name="reminder_title">Nhắc nhở mỗi ngày</string>
+    <string name="reminder_content">Buổi tối vui vẻ! Bạn đã cập nhật các hoạt động chi tiêu chưa nào?</string>
+    <string name="user_not_login">Bạn chưa đăng nhập</string>
+    <string name="signin_title">Đăng nhập</string>
+    <string name="signout_title">Đăng xuất</string>
+    <string name="signup_title">Đăng ký</string>
 </resources>

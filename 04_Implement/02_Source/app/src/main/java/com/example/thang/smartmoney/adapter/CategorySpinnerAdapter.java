@@ -38,6 +38,16 @@ public class CategorySpinnerAdapter extends BaseAdapter {
         dataList = ClassCategory.getByType(type);
     }
 
+    public int getPositionOf(int category_id) {
+        for (int i = 0; i < dataList.size(); ++i) {
+            if (category_id == dataList.get(i).id) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     @Override
     public int getCount() {
         return dataList.size();
