@@ -29,8 +29,8 @@
             android:label="@string/title_activity_them_giao_dich"
             android:theme="@style/AppTheme" />
         <activity android:name=".edit_giaodich" />
-
         <receiver android:name=".notification.NotifyReceiver"/>
+        <activity android:name=".Activity_Tiet_Kiem"></activity>
     </application>
 
 </manifest>
