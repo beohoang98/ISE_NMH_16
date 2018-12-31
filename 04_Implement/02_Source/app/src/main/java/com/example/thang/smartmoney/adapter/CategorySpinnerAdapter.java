@@ -28,6 +28,7 @@ public class CategorySpinnerAdapter extends BaseAdapter {
         this.activity = activity;
         mContext = activity.getApplicationContext();
         mLayoutInflater = LayoutInflater.from(mContext);
+        ClassCategory.loadFromDB(mContext);
         this.type = type;
         dataList = ClassCategory.getByType(type);
     }
@@ -35,6 +36,16 @@ public class CategorySpinnerAdapter extends BaseAdapter {
     public void setType(ClassCategory.CATEGORY_TYPE type) {
         this.type = type;
         dataList = ClassCategory.getByType(type);
+    }
+
+    public int getPositionOf(int category_id) {
+        for (int i = 0; i < dataList.size(); ++i) {
+            if (category_id == dataList.get(i).id) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override

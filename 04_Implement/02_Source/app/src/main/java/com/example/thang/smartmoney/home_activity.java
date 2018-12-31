@@ -7,12 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.thang.smartmoney.database.Database;
 import com.example.thang.smartmoney.fragment.HomeFragment;
 import com.example.thang.smartmoney.fragment.UserFragment;
 import com.example.thang.smartmoney.fragment.fragment_thongke;
@@ -22,10 +23,8 @@ public class home_activity extends AppCompatActivity
     implements TabLayout.OnTabSelectedListener,
         View.OnClickListener
 {
-
-//    ImageButton imgbtnhome1, imgbtnadd1, imgbtnrecom1, imgbtnuser1, btnCategory;
-
-    final int ADD_RESULT_CODE = 0;
+    public static final int ADD_REQUEST_CODE = 0;
+    public static final int EDIT_REQUEST_CODE = 1;
 
     // fragment position
     final int FRAGMENT_HOME = 0;
@@ -33,6 +32,8 @@ public class home_activity extends AppCompatActivity
     final int FRAGMENT_DISABLED = 2;
     final int FRAGMENT_SAVING_BUDGET = 3;
     final int FRAGMENT_USER = 4;
+
+    int stateResume = -1;
 
     TabLayout tabLayout;
     ImageButton addBtn;
@@ -43,6 +44,9 @@ public class home_activity extends AppCompatActivity
         setContentView(R.layout.activity_home_activity);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.addOnTabSelectedListener(this);
+
+        // init database
+        Database.getInstance(getBaseContext());
 
         // disable center tab
         ((ViewGroup)tabLayout.getChildAt(0))
@@ -59,8 +63,6 @@ public class home_activity extends AppCompatActivity
     }
 
     public void switchToPage(int pos) {
-        switchButtonDefault();
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = null;
@@ -68,6 +70,7 @@ public class home_activity extends AppCompatActivity
         switch (pos) {
             case FRAGMENT_HOME:
                 fragment = new HomeFragment();
+                ((HomeFragment)fragment).updateChangedData();
                 break;
             case FRAGMENT_THONGKE:
                 fragment = new fragment_thongke();
@@ -107,27 +110,22 @@ public class home_activity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addBtn:
-                startActivityForResult(new Intent(getBaseContext(), Activity_ThemGiaoDich.class), ADD_RESULT_CODE);
+                startActivityForResult(new Intent(getBaseContext(), Activity_ThemGiaoDich.class), ADD_REQUEST_CODE);
                 break;
         }
     }
 
-    void switchButtonDefault() {
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (this.stateResume == ADD_REQUEST_CODE || this.stateResume == EDIT_REQUEST_CODE) {
+            tabLayout.getTabAt(FRAGMENT_HOME).select();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
-            switch (requestCode) {
-                case ADD_RESULT_CODE:
-                    tabLayout.getTabAt(FRAGMENT_HOME).select();
-                    break;
-            }
-        } catch (Exception e) {
-            Log.d("ignore-error", e.getMessage());
-            // ignore this error
-        }
+        if (resultCode > 0) this.stateResume = requestCode;
     }
 
 }

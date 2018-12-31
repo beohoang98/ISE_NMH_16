@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +15,17 @@ import android.widget.Toast;
 
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.CategorySpinnerAdapter;
-import com.example.thang.smartmoney.database.DBGiaoDich;
+import com.example.thang.smartmoney.database.DBTietKiem;
 import com.example.thang.smartmoney.model.ClassCategory;
-import com.example.thang.smartmoney.model.ClassIncome;
+import com.example.thang.smartmoney.model.ClassTietKiem;
 import com.example.thang.smartmoney.xulysukien.KiemTraInput;
 import com.example.thang.smartmoney.xulysukien.mDatePickerClick;
 import com.example.thang.smartmoney.xulysukien.mPriceInput;
+
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddOneFragment extends Fragment {
-
+public class fragment_tietkiem_them  extends Fragment{
     View view;
     mDatePickerClick datePickerInput;
     mPriceInput priceInput;
@@ -41,7 +40,7 @@ public class AddOneFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_add_income, container, false);
+        view = inflater.inflate(R.layout.fragment_tietkiem_them, container, false);
 
         AnhXa();
         return view;
@@ -50,12 +49,11 @@ public class AddOneFragment extends Fragment {
 
     public void AnhXa() {
         calendar = Calendar.getInstance();
-        categorySpinner = view.findViewById(R.id.frag_income_spinner);
+        categorySpinner = view.findViewById(R.id.tk_income_spinner);
         categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.INCOME);
         categorySpinner.setAdapter(categorySpinnerAdapter);
-        categorySpinner.setPrompt(getString(R.string.category_title));
 
-        noteText = view.findViewById(R.id.frag_income_note);
+        noteText = view.findViewById(R.id.tk_income_note);
 
         handlePriceInput();
         handleDateInput();
@@ -64,19 +62,19 @@ public class AddOneFragment extends Fragment {
 
     void handlePriceInput()
     {
-        priceInput = new mPriceInput(view, R.id.frag_income_price);
+        priceInput = new mPriceInput(view, R.id.tk_income_price);
     }
 
     void handleDateInput()
     {
-        datePickerInput = new mDatePickerClick(view, R.id.frag_income_date);
+        datePickerInput = new mDatePickerClick(view, R.id.tk_income_date);
     }
 
     void handleSubmit()
     {
         final Context _ctx = getContext();
         final Fragment thisFrag = this;
-        buttonAdd = view.findViewById(R.id.frag_income_submit);
+        buttonAdd = view.findViewById(R.id.tk_income_submit);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,11 +86,10 @@ public class AddOneFragment extends Fragment {
                 int category_id = (int)categorySpinner.getSelectedItemId();
 
                 if (validator.KiemTraGiaTien(price) && validator.KiemTraCategory(category_id)) {
-                    ClassIncome income = new ClassIncome(date, price, category_id, note);
-                    DBGiaoDich.them(income);
+                    ClassTietKiem income = new ClassTietKiem(date, price,note, ClassTietKiem.TYPE.DEPOSIT, category_id );
+                    DBTietKiem.them(income);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
 
-                    getActivity().setResult(1);
                     getActivity().finish();
                 }
             }

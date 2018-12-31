@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -19,7 +20,7 @@
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_monetization"
-                android:tint="@color/expense"/>
+                android:tint="@color/income"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
@@ -35,8 +36,8 @@
                     android:textSize="20sp"
                     android:paddingRight="10dp"
                     android:hint="@string/price_title"
-                    android:id="@+id/frag_expense_price"
-                    android:textColor="@color/expense"/>
+                    android:id="@+id/tk_income_price"
+                    android:textColor="@color/income"/>
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -57,8 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/category_title"
-                android:id="@+id/frag_expense_spinner"
-                android:spinnerMode="dropdown">
+                android:id="@+id/tk_income_spinner">
 
             </Spinner>
         </LinearLayout>
@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/date_title"
-                    android:id="@+id/frag_expense_date"
+                    android:id="@+id/tk_income_date"
                     android:paddingHorizontal="10sp"
                     android:focusable="false"/>
 
@@ -113,18 +113,20 @@
                     android:hint="@string/note_title"
                     android:paddingHorizontal="10sp"
                     android:textColor="#333"
-                    android:id="@+id/frag_expense_note"/>
+                    android:id="@+id/tk_income_note"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
+
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD"
             android:layout_gravity="center"
-            android:backgroundTint="@color/expense"
+            android:backgroundTint="@color/income"
             android:textColor="@color/white"
-            android:id="@+id/frag_expense_submit"
+            android:id="@+id/tk_income_submit"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     </LinearLayout>

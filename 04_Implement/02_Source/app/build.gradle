@@ -14,7 +14,7 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.example.thang.smartmoney"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -60,6 +60,7 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.google.firebase:firebase-database:16.0.5'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    implementation 'com.android.support:support-v4:27.1.1'
 }
 
 
