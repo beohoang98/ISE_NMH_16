@@ -27,6 +27,7 @@
             android:label="@string/title_activity_them_giao_dich"
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".edit_giaodich"/>
+        <activity android:name=".Activity_Tiet_Kiem"></activity>
     </application>
 
 </manifest>
