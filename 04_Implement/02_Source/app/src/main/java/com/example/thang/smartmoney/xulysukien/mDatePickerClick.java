@@ -11,6 +11,8 @@ import android.widget.DatePicker;
 
 import com.example.thang.smartmoney.R;
 
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -54,6 +56,11 @@ public class mDatePickerClick implements View.OnClickListener, DatePickerDialog.
     public Date getDate()
     {
         return cal.getTime();
+    }
+    public void setDate(String dateStr) throws ParseException {
+        Date date = fmt.parse(dateStr);
+        cal.setTime(date);
+        editText.setText(dateStr);
     }
 
     @Override

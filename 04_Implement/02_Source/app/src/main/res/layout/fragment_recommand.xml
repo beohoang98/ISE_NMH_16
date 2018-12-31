@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@color/color_while"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView

@@ -53,47 +53,53 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                style="@style/AppTheme.TotalPanel.Text">
-
-                <TextView
-                    android:layout_width="0dp"
+                android:orientation="vertical"
+                style="@style/AppTheme.TotalPanel">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/income_title"
-                    android:layout_weight="1"/>
+                    android:orientation="horizontal"
+                    style="@style/AppTheme.TotalPanelText">
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/income_title"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="+#,###"
+                        android:textColor="@color/income"
+                        android:id="@+id/text_sum_income"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="+#,###"
-                    android:textColor="@color/income"
-                    android:id="@+id/text_sum_income"
-                    android:gravity="end"/>
+                    android:orientation="horizontal"
+                    style="@style/AppTheme.TotalPanelText">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/expense_title"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                style="@style/AppTheme.TotalPanel.Text">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="+#,###"
+                        android:textColor="@color/expense"
+                        android:id="@+id/text_sum_expense"
+                        android:gravity="end"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/expense_title"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="+#,###"
-                    android:textColor="@color/expense"
-                    android:id="@+id/text_sum_expense"
-                    android:gravity="end"/>
-
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -101,14 +107,14 @@
                 android:layout_height="wrap_content"
                 style="@style/AppTheme.TotalPanel">
 
-                <com.github.mikephil.charting.charts.BarChart
+                <com.github.mikephil.charting.charts.LineChart
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:id="@+id/barchar"
+                    android:id="@+id/linechar"
                     android:elevation="5dp"
                     android:translationZ="5dp">
 
-                </com.github.mikephil.charting.charts.BarChart>
+                </com.github.mikephil.charting.charts.LineChart>
 
             </LinearLayout>
 
@@ -122,7 +128,8 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/piechar_income"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp">
+                    android:layout_height="200dp"
+                    android:layout_gravity="center">
 
                 </com.github.mikephil.charting.charts.PieChart>
 
@@ -130,7 +137,8 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/piechar_expense"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp">
+                    android:layout_height="200dp"
+                    android:layout_gravity="center">
 
                 </com.github.mikephil.charting.charts.PieChart>
 

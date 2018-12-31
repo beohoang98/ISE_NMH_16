@@ -55,6 +55,8 @@ public class AddExpenseFragment extends Fragment {
         categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.EXPENSE);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
+        categorySpinner.setPrompt(getString(R.string.category_title));
+
         noteText = view.findViewById(R.id.frag_expense_note);
         handlePriceInput();
         handleDateInput();
@@ -99,6 +101,8 @@ public class AddExpenseFragment extends Fragment {
                     ClassExpense outcome = new ClassExpense(date, price, category_id, note);
                     DBGiaoDich.them(outcome);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
+
+                    getActivity().setResult(1);
                     getActivity().finish();
                 }
             }

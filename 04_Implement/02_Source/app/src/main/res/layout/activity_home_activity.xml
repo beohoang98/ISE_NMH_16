@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_height="match_parent"
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10"
-        >
+        android:weightSum="10">
 
         <FrameLayout
             android:id="@+id/framecontent"
@@ -27,46 +27,46 @@
         </FrameLayout>
 
         <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             app:tabGravity="fill"
-            app:tabMode="fixed"
-            app:tabIndicatorHeight="@dimen/appbar_padding_top"
             app:tabIndicatorColor="@color/colorPrimary"
-            android:id="@+id/tabs"
+            app:tabIndicatorHeight="@dimen/appbar_padding_top"
+            app:tabMode="fixed"
             app:tabSelectedTextColor="@android:color/black"
             app:tabTextColor="@android:color/darker_gray">
 
             <!-- For Test in view -->
 
             <android.support.design.widget.TabItem
+                android:id="@+id/tab_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_home"
-                android:id="@+id/tab_home"/>
+                android:icon="@drawable/ic_home" />
 
             <android.support.design.widget.TabItem
+                android:id="@+id/tab_thongke"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_pie"
-                android:id="@+id/tab_thongke"/>
+                android:icon="@drawable/ic_pie" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <android.support.design.widget.TabItem
+                android:id="@+id/tab_saving"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_monetization"
-                android:id="@+id/tab_saving"/>
+                android:icon="@drawable/ic_monetization" />
 
             <android.support.design.widget.TabItem
+                android:id="@+id/tab_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_person"
-                android:id="@+id/tab_user"/>
+                android:icon="@drawable/ic_person" />
 
         </android.support.design.widget.TabLayout>
 
@@ -80,14 +80,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/circle"
-        android:elevation="5dp"
-        android:translationZ="5dp"
         android:backgroundTint="@color/colorPrimary"
+        android:elevation="5dp"
         android:src="@drawable/ic_add_circle"
         android:tint="@android:color/white"
+        android:translationZ="5dp"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="bottom|center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
 
 

@@ -47,7 +47,8 @@ public class Activity_ThemGiaoDich extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -80,7 +81,8 @@ public class Activity_ThemGiaoDich extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_category) {
             startActivity(new Intent(this, category_activity.class));
-            return true;
+        } else if (id == android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

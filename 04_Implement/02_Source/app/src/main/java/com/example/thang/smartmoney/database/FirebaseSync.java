@@ -55,7 +55,10 @@ public class FirebaseSync {
     static void reinit() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) _isLogin = true;
-        else return;
+        else {
+            _isLogin = false;
+            return;
+        }
 
         dbinstance = Database.getInstance(context).getWritableDatabase();
         firebaseDatabase = FirebaseDatabase.getInstance();
