@@ -31,6 +31,9 @@
         <activity android:name=".edit_giaodich" />
         <receiver android:name=".notification.NotifyReceiver"/>
         <activity android:name=".Activity_Tiet_Kiem"></activity>
+
+        <activity android:name=".activity_budget"/>
+        <activity android:name=".activity_budget_add"/>
     </application>
 
 </manifest>

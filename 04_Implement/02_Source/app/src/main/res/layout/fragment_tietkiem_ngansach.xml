@@ -9,43 +9,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#dfdfdf">
 
-        <android.support.design.widget.AppBarLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="48dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
 
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:title="@string/saving_title">
+                android:text="@string/saving_title"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@color/white" />
 
-            </android.support.v7.widget.Toolbar>
+        </LinearLayout>
 
-        </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:text="@string/saving_des"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
+            android:background="@android:color/white"
             android:drawableEnd="@drawable/ic_chevron_right"
             android:drawableStart="@drawable/ic_saving"
             android:text="@string/saving_title"
             android:gravity="start|center"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="20dp"
+            android:drawablePadding="12dp"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp"
             android:id="@+id/saving_button"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:text="@string/saving_des"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
+            android:background="@android:color/white"
             android:drawableEnd="@drawable/ic_chevron_right"
             android:drawableStart="@drawable/ic_monetization"
             android:text="@string/budget_title"
             android:gravity="start|center"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="20dp"
+            android:drawablePadding="12dp"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp"
             android:id="@+id/budget_button"/>
 
     </LinearLayout>

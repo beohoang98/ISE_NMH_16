@@ -38,7 +38,7 @@ public class DBNganSach {
     public List<ClassNganSach> getAllNganSach()
     {
         List<ClassNganSach> list = new ArrayList<>();
-        Cursor cursor = dbinstance.rawQuery("SELECT * FROM ngansach", null);
+        Cursor cursor = dbinstance.rawQuery("SELECT * FROM " + Database.TABLE.NganSach, null);
         List<ContentValues> values = Database.cursorToContentValues(cursor);
         for (ContentValues value : values) {
             list.add(ClassNganSach.from(value));
