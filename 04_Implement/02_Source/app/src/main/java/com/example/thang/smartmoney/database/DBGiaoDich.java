@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.style.LocaleSpan;
 import android.util.Log;
 
 import com.example.thang.smartmoney.model.ClassGiaoDich;
@@ -56,14 +57,15 @@ public class DBGiaoDich {
 
     protected static ArrayList<ClassGiaoDich> cursorToArray(Cursor c) {
         ArrayList<ClassGiaoDich> res = new ArrayList<>();
-        if (c.getCount() == 0) return res;
+        if (!c.moveToFirst()) return res;
 
-        while (c.moveToNext()) {
+        do {
             ContentValues val = new ContentValues();
             DatabaseUtils.cursorRowToContentValues(c, val);
             ClassGiaoDich gd = new ClassGiaoDich(val);
             res.add(gd);
-        }
+        } while (c.moveToNext());
+
         return res;
     }
 
@@ -101,9 +103,7 @@ public class DBGiaoDich {
     }
 
     public static ArrayList<ClassGiaoDich> getByMonth(int month, int year) {
-        String yearStr = "" + year;
-        String monthStr = (month > 9) ? ("" + month) : ("0" + month);
-        String pattern = "'%/" + monthStr + "/" + yearStr + "'";
+        String pattern = String.format("'%%/%02d/%04d'", month, year);
 
         Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoi_gian LIKE " + pattern, null);
         return cursorToArray(cursor);

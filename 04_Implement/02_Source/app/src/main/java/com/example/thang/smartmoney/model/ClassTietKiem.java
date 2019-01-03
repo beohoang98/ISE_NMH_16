@@ -30,4 +30,10 @@ public class ClassTietKiem extends ClassGiaoDich {
     public ClassTietKiem(ClassGiaoDich gd) {
         super(gd);
     }
+
+    public static boolean isTietKiem(ClassGiaoDich gd)
+    {
+        return (gd.from_id == ClassVi.VI_CHINH_ID && gd.to_id > ClassVi.VI_CHINH_ID)
+                || (gd.to_id == ClassVi.VI_CHINH_ID && gd.from_id > ClassVi.VI_CHINH_ID);
+    }
 }

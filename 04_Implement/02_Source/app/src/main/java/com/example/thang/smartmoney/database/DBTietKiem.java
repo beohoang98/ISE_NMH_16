@@ -75,6 +75,7 @@ public class DBTietKiem extends DBGiaoDich {
         return getDB().update("Vi", val, "id=?", new String[]{"" + soTkId}) > 0;
     }
 
+    @Nullable
     public static ClassVi getSoTietKiem(int soTkId)
     {
         ClassVi vi = new ClassVi();
