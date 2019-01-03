@@ -86,10 +86,9 @@ public class fragment_tietkiem_them  extends Fragment{
                 int category_id = (int)categorySpinner.getSelectedItemId();
 
                 if (validator.KiemTraGiaTien(price) && validator.KiemTraCategory(category_id)) {
-                    ClassTietKiem income = new ClassTietKiem(date, price,note, ClassTietKiem.TYPE.DEPOSIT, category_id );
-                    DBTietKiem.them(income);
+                    DBTietKiem tk_vi = new DBTietKiem();
+                    tk_vi.rutTietKiem(date,price,2);
                     Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
-
                     getActivity().finish();
                 }
             }
