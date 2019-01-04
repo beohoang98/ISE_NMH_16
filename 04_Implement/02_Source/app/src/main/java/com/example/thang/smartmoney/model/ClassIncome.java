@@ -16,4 +16,7 @@ public class ClassIncome extends ClassGiaoDich {
         super(thoigian, sotien, category_id, note, 0, ClassVi.VI_CHINH_ID);
     }
 
+    public static boolean isIncome(ClassGiaoDich giaoDich) {
+        return (giaoDich.from_id == 0 && giaoDich.to_id == ClassVi.VI_CHINH_ID);
+    }
 }

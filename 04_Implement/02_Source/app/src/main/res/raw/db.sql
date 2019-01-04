@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS category
 (
 	id integer primary key autoincrement,
-	type boolean,
+	type int,
 	name nvarchar(255),
 	icon_url varchar(255)
 );

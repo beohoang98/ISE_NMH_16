@@ -17,4 +17,7 @@ public class ClassExpense extends ClassGiaoDich {
         super(thoigian, sotien, category_id, note, ClassVi.VI_CHINH_ID, 0);
     }
 
+    public static boolean isExpense(ClassGiaoDich giaoDich) {
+        return (giaoDich.from_id == ClassVi.VI_CHINH_ID && giaoDich.to_id == 0);
+    }
 }

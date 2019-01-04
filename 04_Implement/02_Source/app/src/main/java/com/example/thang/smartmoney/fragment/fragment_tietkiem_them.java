@@ -42,57 +42,7 @@ public class fragment_tietkiem_them  extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tietkiem_them, container, false);
 
-        AnhXa();
+//        AnhXa();
         return view;
-    }
-
-
-    public void AnhXa() {
-        calendar = Calendar.getInstance();
-        categorySpinner = view.findViewById(R.id.tk_income_spinner);
-        categorySpinnerAdapter = new CategorySpinnerAdapter(getActivity(), ClassCategory.CATEGORY_TYPE.INCOME);
-        categorySpinner.setAdapter(categorySpinnerAdapter);
-
-        noteText = view.findViewById(R.id.tk_income_note);
-
-        handlePriceInput();
-        handleDateInput();
-        handleSubmit();
-    }
-
-    void handlePriceInput()
-    {
-        priceInput = new mPriceInput(view, R.id.tk_income_price);
-    }
-
-    void handleDateInput()
-    {
-        datePickerInput = new mDatePickerClick(view, R.id.tk_income_date);
-    }
-
-    void handleSubmit()
-    {
-        final Context _ctx = getContext();
-        final Fragment thisFrag = this;
-        buttonAdd = view.findViewById(R.id.tk_income_submit);
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KiemTraInput validator = new KiemTraInput(_ctx);
-
-                Date date = datePickerInput.getDate();
-                int price = priceInput.getPrice();
-                String note = noteText.getText().toString();
-                int category_id = (int)categorySpinner.getSelectedItemId();
-
-                if (validator.KiemTraGiaTien(price) && validator.KiemTraCategory(category_id)) {
-                    ClassTietKiem income = new ClassTietKiem(date, price,note, ClassTietKiem.TYPE.DEPOSIT, category_id );
-                    DBTietKiem.them(income);
-                    Toast.makeText(_ctx, "Success", Toast.LENGTH_SHORT).show();
-
-                    getActivity().finish();
-                }
-            }
-        });
     }
 }
