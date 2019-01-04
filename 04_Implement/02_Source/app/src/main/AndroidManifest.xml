@@ -3,8 +3,8 @@
     package="com.example.thang.smartmoney">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_ALARM"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +16,8 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,19 +25,21 @@
         <activity android:name=".Signup_Activity" />
         <activity android:name=".home_activity" />
         <activity android:name=".category_activity" />
-        <activity android:name=".SettingActivity"/>
+        <activity android:name=".SettingActivity" />
         <activity
             android:name=".Activity_ThemGiaoDich"
             android:label="@string/title_activity_them_giao_dich"
             android:theme="@style/AppTheme" />
         <activity android:name=".edit_giaodich" />
-        <receiver android:name=".notification.NotifyReceiver"/>
+
+        <receiver android:name=".notification.NotifyReceiver" />
 
         <activity android:name=".Activity_Tiet_Kiem" />
         <activity android:name=".Tutorial_Activity" />
-        <activity android:name=".activity_budget"/>
-        <activity android:name=".activity_budget_add"/>
+        <activity android:name=".activity_budget" />
+        <activity android:name=".activity_budget_add" />
         <activity android:name=".activity_budget_info"/>
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
