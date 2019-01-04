@@ -72,7 +72,8 @@ public class activity_budget extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        nganSachList = DBNganSach.getInstance(this).getAllNganSach();
+        nganSachList.clear();
+        nganSachList.addAll(DBNganSach.getInstance(this).getAllNganSach());
         adapter.notifyDataSetChanged();
     }
 

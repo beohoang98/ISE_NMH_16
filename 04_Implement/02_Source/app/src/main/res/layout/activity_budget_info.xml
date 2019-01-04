@@ -26,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
-        android:scrollbarStyle="outsideOverlay">
+        android:scrollbarStyle="outsideOverlay"
+        android:padding="8dp">
 
     </android.support.v7.widget.RecyclerView>
 

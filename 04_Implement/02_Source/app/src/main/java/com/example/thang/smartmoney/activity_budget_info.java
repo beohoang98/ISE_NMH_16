@@ -1,5 +1,7 @@
 package com.example.thang.smartmoney;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thang.smartmoney.adapter.ListTransactionHomeAdapter;
 import com.example.thang.smartmoney.database.DBNganSach;
@@ -23,6 +26,7 @@ import com.example.thang.smartmoney.model.ClassExpense;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
 import com.example.thang.smartmoney.model.ClassNganSach;
 import com.example.thang.smartmoney.model.ClassTietKiem;
+import com.example.thang.smartmoney.xulysukien.DeleteDialog;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.ArrayList;
@@ -37,30 +41,33 @@ public class activity_budget_info extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView recyclerView;
-    ClassNganSach nganSach;
+    List<ClassNganSach> nganSach;
+    DayByDayAdapter adapter;
+    int nganSachId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_info);
 
-        int id = getIntent().getIntExtra("id", -1);
-        if (id == -1) {
+        nganSachId = getIntent().getIntExtra("id", -1);
+        if (nganSachId == -1) {
             finish();
             return;
         }
-        nganSach = DBNganSach.getInstance(this).getNganSach(id);
+        nganSach = new ArrayList<>();
+        nganSach.add(DBNganSach.getInstance(this).getNganSach(nganSachId));
 
         AnhXa();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle(nganSach.getName());
+        toolbar.setTitle(nganSach.get(0).getName());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        DayByDayAdapter adapter = new DayByDayAdapter(nganSach);
+        adapter = new DayByDayAdapter(nganSach.get(0));
         recyclerView.setAdapter(adapter);
     }
 
@@ -84,12 +91,50 @@ public class activity_budget_info extends AppCompatActivity {
                 finish();
                 break;
             case R.id.edit:
+                editNganSach();
                 break;
             case R.id.delete:
+                xoaNganSach();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void editNganSach()
+    {
+        Intent intent = new Intent(this, activity_budget_add.class);
+        intent.putExtra("id", nganSachId);
+        startActivity(intent);
+    }
+
+    void xoaNganSach()
+    {
+        DeleteDialog deleteDialog = new DeleteDialog(this);
+        deleteDialog.setOnConfirmListener(new DeleteDialog.OnConfirm() {
+            @Override
+            public void onConfirm() {
+                int n = DBNganSach.getInstance(getBaseContext()).xoa(nganSachId);
+                if (n <= 0) {
+                    Toast.makeText(getBaseContext(), "Xoa loi", Toast.LENGTH_SHORT)
+                        .show();
+                } else {
+                    Toast.makeText(getBaseContext(), "Xoa thanh cong", Toast.LENGTH_SHORT)
+                            .show();
+                    finish();
+                }
+            }
+        });
+        deleteDialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        nganSach.clear();
+        nganSach.add(DBNganSach.getInstance(this).getNganSach(nganSachId));
+        toolbar.setTitle(nganSach.get(0).getName());
+        adapter.notifyDataSetChanged();
     }
 
     class DayByDayAdapter extends RecyclerView.Adapter<DayByDayAdapter.ViewHolder>

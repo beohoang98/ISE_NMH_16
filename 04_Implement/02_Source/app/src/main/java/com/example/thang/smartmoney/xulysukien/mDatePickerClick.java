@@ -63,6 +63,12 @@ public class mDatePickerClick implements View.OnClickListener, DatePickerDialog.
         editText.setText(dateStr);
     }
 
+    public void setDate(Date date)
+    {
+        cal.setTime(date);
+        editText.setText(DateFormat.format(date));
+    }
+
     @Override
     public void onClick(View v) {
         DatePickerDialog dialog = new DatePickerDialog(mCtx, this,
