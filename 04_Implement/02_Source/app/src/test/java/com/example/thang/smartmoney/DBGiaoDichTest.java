@@ -1,42 +1,33 @@
 package com.example.thang.smartmoney;
 
-import android.app.Activity;
-import android.app.Instrumentation;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.database.Cursor;
-import android.os.Build;
-import android.support.test.InstrumentationRegistry;
 
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.database.Database;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
+import com.example.thang.smartmoney.xulysukien.DateFormat;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 
-
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
-import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestCase;
 
-import java.io.Console;
 import java.lang.reflect.Field;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+
+import androidx.test.core.app.ApplicationProvider;
 
 @RunWith(RobolectricTestRunner.class)
 public class DBGiaoDichTest extends TestCase {
@@ -45,9 +36,10 @@ public class DBGiaoDichTest extends TestCase {
     Context ctx;
 
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
-        ctx = RuntimeEnvironment.application.getApplicationContext();
+        ctx = ApplicationProvider.getApplicationContext();
+//        ctx = InstrumentationRegistry.getTargetContext();
         Database.initForTest();
         DBGiaoDich.init(ctx);
         cal = Calendar.getInstance();
@@ -55,7 +47,7 @@ public class DBGiaoDichTest extends TestCase {
     }
 
     @After
-    public void tearDown() throws Exception
+    public void tearDown()
     {
         DBGiaoDich.close();
         dbOther.close();
@@ -91,7 +83,7 @@ public class DBGiaoDichTest extends TestCase {
         ArrayList<ClassGiaoDich> list = DBGiaoDich.getByDate(cal.getTime());
         ClassGiaoDich[] arr = list.toArray(new ClassGiaoDich[list.size()]);
 
-        assertTrue(Arrays.binarySearch(arr, gd1) > -1 && Arrays.binarySearch(arr, gd2) > -1);
+        Assert.assertTrue(Arrays.binarySearch(arr, gd1) > -1 && Arrays.binarySearch(arr, gd2) > -1);
     }
 
     @Test
@@ -163,8 +155,9 @@ public class DBGiaoDichTest extends TestCase {
     }
 
     @Test
-    public void testGetGDByMonth() {
-        Date date = cal.getTime();
+    public void testGetGDByMonth() throws ParseException {
+        Date date = DateFormat.parse("30/4/1975");
+        cal.setTime(date);
         int month = cal.get(Calendar.MONTH) + 1; // wtf january in Java start at 0
         int year = cal.get(Calendar.YEAR);
         Log.d("test", "" + month + "/" + year);
@@ -177,6 +170,29 @@ public class DBGiaoDichTest extends TestCase {
         // 4
 
         ArrayList<ClassGiaoDich> list = DBGiaoDich.getByMonth(month, year);
-        assertEquals(4, list.size());
+        Assert.assertEquals(4, list.size());
+    }
+
+    /**
+     * FIX ATTEMPT RE-OPEN ALREADY-CLOSED....
+     * https://stackoverflow.com/questions/30308776/robolectric-accessing-database-throws-an-error
+     *
+     * P/s: Don't understand why?
+     */
+
+    @After
+    public void finishComponentTesting() {
+        resetSingleton(Database.class, "mInstance");
+    }
+
+    private void resetSingleton(Class clazz, String fieldName) {
+        Field instance;
+        try {
+            instance = clazz.getDeclaredField(fieldName);
+            instance.setAccessible(true);
+            instance.set(null, null);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

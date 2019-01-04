@@ -19,6 +19,7 @@ import com.example.thang.smartmoney.adapter.CategorySpinnerAdapter;
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
+import com.example.thang.smartmoney.model.ClassTietKiem;
 import com.example.thang.smartmoney.xulysukien.DateFormat;
 import com.example.thang.smartmoney.xulysukien.mDatePickerClick;
 import com.example.thang.smartmoney.xulysukien.mPriceInput;
@@ -40,6 +41,7 @@ public class edit_giaodich extends AppCompatActivity
     Button confirmButton;
 
     private ClassGiaoDich data;
+    private boolean isSaving = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class edit_giaodich extends AppCompatActivity
 
         DBGiaoDich.init(this);
         data = DBGiaoDich.getById(id);
+        isSaving = ClassTietKiem.isTietKiem(data);
 
         try {
             AnhXa();
@@ -77,11 +80,14 @@ public class edit_giaodich extends AppCompatActivity
         noteText.setText(data.note);
 
         spinner = findViewById(R.id.edit_category);
-        ClassCategory category = ClassCategory.getById(data.category_id);
-        CategorySpinnerAdapter adapter = new CategorySpinnerAdapter(this, category.type);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(adapter.getPositionOf(data.category_id));
-
+        if (!isSaving) {
+            ClassCategory category = ClassCategory.getById(data.category_id);
+            CategorySpinnerAdapter adapter = new CategorySpinnerAdapter(this, category.type);
+            spinner.setAdapter(adapter);
+            spinner.setSelection(adapter.getPositionOf(data.category_id));
+        } else {
+            spinner.setVisibility(View.GONE);
+        }
 
         confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(this);
@@ -161,13 +167,14 @@ public class edit_giaodich extends AppCompatActivity
     void update() {
         int sotien = priceInput.getPrice();
         Date date = datePicker.getDate();
-        int category_id = (int)spinner.getSelectedItemId();
+        int category_id = (isSaving) ? -1 : (int)spinner.getSelectedItemId();
+
         String note = noteText.getText().toString();
         ClassGiaoDich edited = new ClassGiaoDich(data);
         edited.sotien = sotien;
         edited.thoigian = DateFormat.format(date);
         edited.note = note;
-        edited.category_id = category_id;
+        if (!isSaving) edited.category_id = category_id;
 
         int effect_rows = DBGiaoDich.update(edited);
         if (effect_rows > 0) {

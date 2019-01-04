@@ -60,4 +60,20 @@
     <string name="signin_title">Đăng nhập</string>
     <string name="signout_title">Đăng xuất</string>
     <string name="signup_title">Đăng ký</string>
+
+    <string name="saving_des">Chức năng này cho phép bạn ghi nhớ lại việc tiết kiệm của bạn, dễ dàng xem và nhớ lại các khoản tiết kiệm và có thể ghi nhớ nhiều khoản tiết kiệm khác nhau cho những mục đích khác nhau</string>
+    <string name="budget_des">123456</string>
+
+    <string name="budget_add">Thêm sổ ngân sách</string>
+    <string name="budget_name">Tên sổ ngân sách</string>
+    <string name="budget_startdate">Ngày bắt đầu</string>
+    <string name="budget_enddate">Ngày kết thúc</string>
+    <string name="budget_money">Quỹ ngân sách cho trước</string>
+    <string name="budget_left">còn lại</string>
+
+    <string name="deposit_title">Thêm tiết kiệm</string>
+    <string name="withdraw_title">Rút</string>
+    <string name="delete">Xóa</string>
+    <string name="deposit_money_title">Số tiền</string>
+    <string name="money_type">đ</string>
 </resources>

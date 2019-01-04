@@ -54,6 +54,10 @@ public class Activity_Tiet_Kiem extends AppCompatActivity{
         // primary sections of the activity.
         mSectionsPagerAdapter = new Activity_Tiet_Kiem.SectionsPagerAdapter(getSupportFragmentManager());
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.tk_ViewPager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -82,20 +86,34 @@ public class Activity_Tiet_Kiem extends AppCompatActivity{
                 case 0:
                     return new fragment_tietkiem_tien();
                 case 1:
-                    return new AddOneFragment();
-                case 2:
+                    // return new AddOneFragment();
+                //case 2:
                     return new fragment_tietkiem_danhsach();
-                case 3:
-                    return new  fragment_tietkiem_ruttien();
-                    default:
-                        return  null;
+//                case 3:
+//                    return new  fragment_tietkiem_ruttien();
+//                    default:
+//                        return  null;
             }
+            return null;
         }
 
         @Override
         public int getCount() {
             // Show 4 total pages.
-            return 4;
+            // return 4;
+            return 2;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

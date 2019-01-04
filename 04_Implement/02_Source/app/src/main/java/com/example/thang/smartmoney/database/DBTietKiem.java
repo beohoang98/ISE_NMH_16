@@ -10,6 +10,7 @@ import com.example.thang.smartmoney.model.ClassVi;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DBTietKiem extends DBGiaoDich {
 
@@ -25,13 +26,13 @@ public class DBTietKiem extends DBGiaoDich {
         return them(tk);
     }
 
-    public static void xoaTietKiem(int gdTkId) throws RuntimeException
+    public static boolean xoaTietKiem(int gdTkId) throws RuntimeException
     {
         ClassTietKiem tk = findGiaoDichTietKiemById(gdTkId);
         if (tk == null) {
             throw new RuntimeException("Giao dich " + gdTkId + " khong phai la 1 gd tiet kiem");
         }
-        xoa(gdTkId);
+        return xoa(gdTkId);
     }
 
     public static ClassTietKiem findGiaoDichTietKiemById(int gdTkId)
@@ -75,6 +76,7 @@ public class DBTietKiem extends DBGiaoDich {
         return getDB().update("Vi", val, "id=?", new String[]{"" + soTkId}) > 0;
     }
 
+    @Nullable
     public static ClassVi getSoTietKiem(int soTkId)
     {
         ClassVi vi = new ClassVi();
@@ -94,5 +96,20 @@ public class DBTietKiem extends DBGiaoDich {
         Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE (from_id = ? AND to_id = ?) OR (from_id = ? AND to_id = ?)",
                 new String[]{ ClassVi.VI_CHINH_ID + "", "" + soTkId, "" + soTkId, "" + ClassVi.VI_CHINH_ID});
         return cursorToArray(cursor);
+    }
+
+    public static int getSoDu(int soTkId) {
+        int sum = 0;
+
+        List<ClassGiaoDich> giaoDichList = getGiaoDichBySoTietKiem(soTkId);
+        for (ClassGiaoDich giaoDich : giaoDichList)
+        {
+            if (giaoDich.from_id == ClassVi.VI_CHINH_ID) {
+                sum += giaoDich.sotien;
+            } else {
+                sum -= giaoDich.sotien;
+            }
+        }
+        return sum;
     }
 }

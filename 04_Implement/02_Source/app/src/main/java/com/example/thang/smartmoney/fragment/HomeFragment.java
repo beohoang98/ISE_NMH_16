@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.thang.smartmoney.R;
@@ -19,13 +20,17 @@ import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.Calendar;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment
+    implements View.OnClickListener
+{
 
     private View view;
     private ViewPager mViewPager;
     private Fragment_TransListByTime_Adapter adapter;
     private Calendar calender;
     private TextView soDu;
+
+    ImageButton previous, next;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +52,19 @@ public class HomeFragment extends Fragment {
         mViewPager.setCurrentItem(1);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.previous:
+                mViewPager.setCurrentItem(0);
+                break;
+            case R.id.next:
+                mViewPager.setCurrentItem(2);
+                break;
+        }
     }
 
     public void updateChangedData() {
@@ -88,5 +106,11 @@ public class HomeFragment extends Fragment {
 
         soDu = view.findViewById(R.id.home_sodu);
         soDu.setText(PriceFormat.format(DBVi.getSoDu()));
+
+        previous = view.findViewById(R.id.previous);
+        next = view.findViewById(R.id.next);
+
+        previous.setOnClickListener(this);
+        next.setOnClickListener(this);
     }
 }

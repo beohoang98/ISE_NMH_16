@@ -3,13 +3,15 @@ package com.example.thang.smartmoney.model;
 import android.content.ContentValues;
 import android.support.annotation.Nullable;
 
+import com.example.thang.smartmoney.xulysukien.DateFormat;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClassGiaoDich implements Comparable {
     public int id;
-    public String thoigian;
+    public String thoigian; // danh cho chuoi
+    public Date ngay; // ngay that su
     public int sotien;
     public int category_id;
     public String note;
@@ -19,6 +21,13 @@ public class ClassGiaoDich implements Comparable {
     public ClassGiaoDich(ContentValues val) {
         this.id = val.getAsInteger("id");
         this.thoigian = val.getAsString("thoi_gian");
+
+        try {
+            this.ngay = DateFormat.parse(this.thoigian);
+        } catch (ParseException e) {
+            //ignore
+        }
+
         this.sotien = val.getAsInteger("so_tien");
         this.category_id = val.getAsInteger("category_id");
         this.note = val.getAsString("note");
@@ -27,7 +36,8 @@ public class ClassGiaoDich implements Comparable {
     }
 
     public ClassGiaoDich(Date thoigian, int sotien, int category_id, String note, int from_id, int to_id) {
-        this.thoigian = new SimpleDateFormat("dd/MM/yyyy").format(thoigian);
+        this.thoigian = DateFormat.format(thoigian);
+        this.ngay = thoigian;
         this.sotien = sotien;
         this.category_id = category_id;
         this.note = note;
