@@ -60,6 +60,7 @@
     <string name="signin_title">Đăng nhập</string>
     <string name="signout_title">Đăng xuất</string>
     <string name="signup_title">Đăng ký</string>
+    <string name="tutorial_title">Hướng dẫn sử dụng</string>
 
     <string name="saving_des">Chức năng này cho phép bạn ghi nhớ lại việc tiết kiệm của bạn, dễ dàng xem và nhớ lại các khoản tiết kiệm và có thể ghi nhớ nhiều khoản tiết kiệm khác nhau cho những mục đích khác nhau</string>
     <string name="budget_des">123456</string>

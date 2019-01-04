@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.thang.smartmoney.MainActivity;
 import com.example.thang.smartmoney.R;
+import com.example.thang.smartmoney.Tutorial_Activity;
 import com.example.thang.smartmoney.database.FirebaseSync;
 import com.example.thang.smartmoney.notification.NotifyService;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ public class UserFragment extends Fragment
     View view;
     Button logoutButton;
     Button syncButton;
+    Button tutoButton;
     ProgressBar progressBar;
     NotifyService notifyService;
 
@@ -56,6 +58,7 @@ public class UserFragment extends Fragment
         logoutButton = view.findViewById(R.id.frag_user_button_logout);
         syncButton = view.findViewById(R.id.sync_btn);
         progressBar = view.findViewById(R.id.progressBar);
+        tutoButton = view.findViewById(R.id.tutorial_button);
 
         if (!FirebaseSync.isLogin()) {
             syncButton.setEnabled(false);
@@ -74,7 +77,7 @@ public class UserFragment extends Fragment
         }
         logoutButton.setOnClickListener(this);
         syncButton.setOnClickListener(this);
-
+        tutoButton.setOnClickListener(this);
         notifyService = new NotifyService(getActivity().getApplicationContext());
         SwitchCompat switchCompat = view.findViewById(R.id.switch_notify);
         switchCompat.setChecked(notifyService.isNotify());
@@ -146,6 +149,9 @@ public class UserFragment extends Fragment
             } else {
                 Login();
             }
+        } else  if (v.getId()== R.id.tutorial_button){
+            Intent intent = new Intent(getActivity(), Tutorial_Activity.class);
+            startActivity(intent);
         }
     }
 
