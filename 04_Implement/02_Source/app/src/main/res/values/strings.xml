@@ -70,4 +70,10 @@
     <string name="budget_enddate">Ngày kết thúc</string>
     <string name="budget_money">Quỹ ngân sách cho trước</string>
     <string name="budget_left">còn lại</string>
+
+    <string name="deposit_title">Thêm tiết kiệm</string>
+    <string name="withdraw_title">Rút</string>
+    <string name="delete">Xóa</string>
+    <string name="deposit_money_title">Số tiền</string>
+    <string name="money_type">đ</string>
 </resources>

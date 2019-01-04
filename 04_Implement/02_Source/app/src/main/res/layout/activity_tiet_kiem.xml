@@ -21,21 +21,25 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/tk_toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_weight="1"
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="Ví Tiết kiệm">
+                app:title="@string/saving_title">
 
             </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tk_tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:tabTextColor="@android:color/darker_gray"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabIndicatorHeight="4dp">
 
                 <!--test view, vao code se khac-->
                 <android.support.design.widget.TabItem
@@ -44,11 +48,11 @@
                     android:layout_height="wrap_content"
                     android:text="Tiền tiết kiệm" />
 
-                <android.support.design.widget.TabItem
-                    android:id="@+id/tk_tabItem_them"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thêm" />
+                <!--<android.support.design.widget.TabItem-->
+                    <!--android:id="@+id/tk_tabItem_them"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Thêm" />-->
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tk_tabItem_ds"
@@ -56,11 +60,11 @@
                     android:layout_height="wrap_content"
                     android:text="Danh sách" />
 
-                <android.support.design.widget.TabItem
-                    android:id="@+id/tk_tabItem_rut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rút tiền" />
+                <!--<android.support.design.widget.TabItem-->
+                    <!--android:id="@+id/tk_tabItem_rut"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Rút tiền" />-->
 
             </android.support.design.widget.TabLayout>
         </android.support.design.widget.AppBarLayout>

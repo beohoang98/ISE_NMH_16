@@ -22,7 +22,7 @@ public class Database extends SQLiteOpenHelper {
     private static String DBNAME = "SmartMoney.sqlite";
     public static final String DBNAME_TEST = "SmartMoney.sqlite.test";
 
-    private static int DBVERSION = 3;
+    private static int DBVERSION = 4; // them so tiet kiem
     public static final int TESTVERSION = 1;
 
     private static Database mInstance = null;

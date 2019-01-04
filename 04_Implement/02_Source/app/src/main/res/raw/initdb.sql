@@ -1,4 +1,5 @@
 INSERT OR REPLACE INTO Vi (id, name) VALUES (1, 'Vi chinh');
+INSERT OR REPLACE INTO Vi (id, name) VALUES (2, 'So tiet kiem 1');
 
 INSERT OR REPLACE INTO category (id, type, name, icon_url) VALUES (1, 0, 'Salary', 'ic_salary');
 INSERT OR REPLACE INTO category (id, type, name, icon_url) VALUES (2, 0, 'Thu nhap them', 'ic_cash');

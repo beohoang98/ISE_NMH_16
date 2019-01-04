@@ -14,6 +14,7 @@ public class ClassVi {
     public static Context mCtx;
 
     public static final int VI_CHINH_ID = 1;
+    public static final int VI_TIET_KIEM = 2;
 
     public int id;
     public String name;

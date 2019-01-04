@@ -1,6 +1,7 @@
 package com.example.thang.smartmoney.xulysukien;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
@@ -24,6 +25,10 @@ public class mPriceInput implements TextWatcher {
         editText = view.findViewById(inputId);
         editText.addTextChangedListener(this);
         fmt = new DecimalFormat("#,###");
+    }
+
+    public mPriceInput(Dialog dialog, int inputId) {
+        this(((ViewGroup)dialog.findViewById(android.R.id.content)).getChildAt(0), inputId);
     }
 
     public mPriceInput(Activity activity, int inputId)

@@ -6,44 +6,75 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="6">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/save_money"
+            android:layout_height="160dp"
             android:layout_marginTop="10sp"
-            android:layout_weight="2"/>
+            android:scaleX="-1"
+            app:srcCompat="@drawable/ic_piggy_bank_color" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:text="Số dư: "
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginRight="15sp" />
+                android:layout_gravity="center"
+                android:layout_marginRight="15sp"
+                android:text="@string/deposit_money_title"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tietkiem_tien_textview_tien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:layout_weight="1"
+                android:text="0,000"
                 android:textSize="20sp"
-                android:text="0,000" />
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/money_type"
+                android:padding="8dp"/>
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/add_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        android:background="@drawable/mgradient"
+        android:textColor="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/add_saving_button"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/withdraw_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_saving_button"
+        android:id="@+id/withdraw"/>
+
 </android.support.constraint.ConstraintLayout>
