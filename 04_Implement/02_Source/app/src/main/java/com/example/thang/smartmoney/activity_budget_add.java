@@ -69,8 +69,8 @@ public class activity_budget_add extends AppCompatActivity
         switch (v.getId())
         {
             case R.id.addBtn:
-                if (info_id > -1) addNganSach();
-                else updateNganSach();
+                if (info_id > -1) updateNganSach();
+                else addNganSach();
                 break;
 
             case R.id.xoaBtn:

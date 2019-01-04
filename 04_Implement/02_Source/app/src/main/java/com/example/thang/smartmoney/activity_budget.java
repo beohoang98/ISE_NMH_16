@@ -58,7 +58,7 @@ public class activity_budget extends AppCompatActivity
 
     @Override
     public void onClick(View v, int position, int id) {
-        Intent intent = new Intent(this, activity_budget_add.class);
+        Intent intent = new Intent(this, activity_budget_info.class);
         intent.putExtra("id", id);
         startActivity(intent);
     }

@@ -34,6 +34,7 @@
 
         <activity android:name=".activity_budget"/>
         <activity android:name=".activity_budget_add"/>
+        <activity android:name=".activity_budget_info"/>
     </application>
 
 </manifest>

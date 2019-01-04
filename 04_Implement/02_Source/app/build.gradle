@@ -20,6 +20,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         debug {
@@ -38,6 +39,9 @@ android {
         }
     }
     productFlavors {
+    }
+    aaptOptions {
+        additionalParameters "--no-version-vectors"
     }
 }
 

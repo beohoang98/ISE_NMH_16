@@ -110,7 +110,8 @@ public class ListTransactionHomeAdapter extends RecyclerView.Adapter<ListTransac
 
         @Override
         public void onClick(View view) {
-            onClickListener.onClick(view, getAdapterPosition());
+            if (onClickListener != null)
+                onClickListener.onClick(view, getAdapterPosition());
         }
     }
 

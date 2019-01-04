@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -176,6 +177,34 @@ public class DBNganSachTest {
         Assert.assertEquals("incorrect in result", 300000, tongChi);
     }
 
+    @Test
+    public void testGetFinished() throws  ParseException {
+        Date testDate = DateFormat.parse("15/12/2018");
+
+        database.create(prepareNganSach("15/10/2018", "15/11/2018"));
+        database.create(prepareNganSach("15/11/2018", "15/12/2018"));
+        database.create(prepareNganSach("25/10/2018", "25/12/2018"));
+        database.create(prepareNganSach("15/07/2018", "15/08/2018"));
+        database.create(prepareNganSach("15/07/2018", "01/01/2019"));
+
+        List<ClassNganSach> nganSachList = database.getNganSachFinished(testDate);
+        Assert.assertEquals(2, nganSachList.size());
+    }
+
+    @Test
+    public void testGetNotFinished() throws  ParseException {
+        Date testDate = DateFormat.parse("15/12/2018");
+
+        database.create(prepareNganSach("15/10/2018", "15/11/2018"));
+        database.create(prepareNganSach("15/11/2018", "15/12/2018"));
+        database.create(prepareNganSach("25/10/2018", "25/12/2018"));
+        database.create(prepareNganSach("15/07/2018", "15/08/2018"));
+        database.create(prepareNganSach("15/07/2018", "01/01/2019"));
+
+        List<ClassNganSach> nganSachList = database.getNganSachNotFinish(testDate);
+        Assert.assertEquals(3, nganSachList.size());
+    }
+
     List<ClassExpense> prepareListGiaoDich() throws ParseException {
         ArrayList<ClassExpense> list = new ArrayList<>();
 
@@ -191,9 +220,17 @@ public class DBNganSachTest {
         return list;
     }
 
-    ClassNganSach prepareNganSach() throws ParseException {
-        Date ngayBD = DateFormat.parse("15/10/2018");
-        Date ngayKT = DateFormat.parse("06/01/2019");
+    ClassNganSach prepareNganSach() throws ParseException
+    {
+        return prepareNganSach(null, null);
+    }
+
+    ClassNganSach prepareNganSach(@Nullable String start, @Nullable String end) throws ParseException {
+        if (start == null) start = "15/10/2018";
+        if (end == null) end = "06/01/2019";
+
+        Date ngayBD = DateFormat.parse(start);
+        Date ngayKT = DateFormat.parse(end);
         return ClassNganSach.create("Thang 10-12", 1000000, ngayBD, ngayKT);
     }
 
