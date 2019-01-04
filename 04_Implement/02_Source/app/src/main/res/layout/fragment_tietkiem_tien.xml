@@ -75,6 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_saving_button"
-        android:id="@+id/withdraw"/>
+        android:id="@+id/withdraw_saving_button"/>
 
 </android.support.constraint.ConstraintLayout>
