@@ -16,6 +16,8 @@ import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
 import com.example.thang.smartmoney.model.ClassIcon;
+import com.example.thang.smartmoney.model.ClassTietKiem;
+import com.example.thang.smartmoney.model.ClassVi;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 
 import java.util.ArrayList;
@@ -62,27 +64,30 @@ public class ListTransactionHomeAdapter extends RecyclerView.Adapter<ListTransac
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ClassGiaoDich addGhiChu = this.list.get(position);
         ClassCategory category = ClassCategory.getById(addGhiChu.category_id);
-        if (category == null) {
-            return;
-        }
-
-        int iconId = context.getResources().getIdentifier(category.icon_url, "drawable", context.getPackageName());
-        if (iconId > 0)
-            holder.icon.setImageResource(iconId);
-        else if (!ClassIcon.loadDownloadedIcon(category.icon_url + ".svg", holder.icon, activity)) {
-            holder.icon.setImageResource(R.drawable.lo_go);
+        if (category != null) {
+            int iconId = context.getResources().getIdentifier(category.icon_url, "drawable", context.getPackageName());
+            if (iconId > 0)
+                holder.icon.setImageResource(iconId);
+            else if (!ClassIcon.loadDownloadedIcon(category.icon_url + ".svg", holder.icon, activity)) {
+                holder.icon.setImageResource(R.drawable.lo_go);
+            }
+            holder.category.setText(ClassCategory.getName(addGhiChu.category_id));
         }
 
         holder.note.setText(addGhiChu.note);
         holder.price.setText( PriceFormat.format(addGhiChu.sotien) );
-        holder.category.setText(ClassCategory.getName(addGhiChu.category_id));
 
-        if (addGhiChu.from_id == 0) {
+        if (addGhiChu.to_id == ClassVi.VI_CHINH_ID) {
             // income
             holder.price.setTextColor(ContextCompat.getColor(context, R.color.income));
         } else {
             holder.price.setTextColor(ContextCompat.getColor(context, R.color.expense));
             holder.price.setText("-" + holder.price.getText());
+        }
+
+        if (ClassTietKiem.isTietKiem(addGhiChu)) {
+            holder.icon.setImageResource(R.drawable.ic_saving);
+            holder.category.setText(R.string.saving_title);
         }
     }
 

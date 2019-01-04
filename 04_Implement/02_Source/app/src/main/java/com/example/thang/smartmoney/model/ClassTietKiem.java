@@ -47,7 +47,6 @@ public class ClassTietKiem extends ClassGiaoDich {
 
     public static boolean isTietKiem(ClassGiaoDich gd)
     {
-        return (gd.from_id == ClassVi.VI_CHINH_ID && gd.to_id > ClassVi.VI_CHINH_ID)
-                || (gd.to_id == ClassVi.VI_CHINH_ID && gd.from_id > ClassVi.VI_CHINH_ID);
+        return (gd.from_id != 0 && gd.to_id != 0);
     }
 }
