@@ -54,7 +54,7 @@ public class Activity_Tiet_Kiem extends AppCompatActivity{
         // primary sections of the activity.
         mSectionsPagerAdapter = new Activity_Tiet_Kiem.SectionsPagerAdapter(getSupportFragmentManager());
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -33,9 +33,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_pen" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_tutorial" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\User\Desktop\softwareprogramming\implement\icon\ic_saving_out.svg" />
+                            <entry key="sourceFile" value="C:\Users\User\Desktop\softwareprogramming\implement\icon\ic_tutorial.svg" />
                           </map>
                         </option>
                       </PersistentState>
