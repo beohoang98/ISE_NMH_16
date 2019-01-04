@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.thang.smartmoney.AboutActivity;
 import com.example.thang.smartmoney.MainActivity;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.Tutorial_Activity;
@@ -44,13 +45,23 @@ public class UserFragment extends Fragment
     private Uri avatar_url;
     private String username;
     private String email;
-
+    private Button aboutButton;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseSync.Init(getContext());
+        aboutButton = view.findViewById(R.id.publisher_btn);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAboutActivity();
+            }
+        });
     }
-
+    public void openAboutActivity(){
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
     public void AnhXa() {
         AppCompatImageView avatarView = view.findViewById(R.id.frag_user_avatar);
         TextView usernameView = view.findViewById(R.id.frag_user_name);

@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="3dp"
             android:gravity="center"
             android:text="@string/action_settings"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
@@ -50,7 +50,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -66,7 +66,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:cropToPadding="false"
-                android:src="@color/colorPrimaryDark"/>
+                android:src="@color/colorPrimaryDark" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_marginBottom="8dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:text="Sync"
@@ -147,6 +147,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/publisher_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="About"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
