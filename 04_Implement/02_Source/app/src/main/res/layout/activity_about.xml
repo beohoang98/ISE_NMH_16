@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:background="@color/colorPrimary">>
+        android:background="@color/colorPrimary"><![CDATA[>
+
+        ]]>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -27,18 +29,35 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="About"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             tools:layout_editor_absoluteX="152dp"
             tools:layout_editor_absoluteY="5dp"
             tools:textSize="30sp" />
+
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Smart Money"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteY="188dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Create by team NoName16"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -49,8 +68,23 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Project : ISE_NMH_16"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:text="ISE_NMH_16" />
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/lo_go" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Version 1.0"
+        android:textSize="18sp" />
 
 </LinearLayout>
