@@ -14,7 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thang.smartmoney.R;
+import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.database.DBTietKiem;
+import com.example.thang.smartmoney.model.ClassCategory;
+import com.example.thang.smartmoney.model.ClassIncome;
 import com.example.thang.smartmoney.model.ClassVi;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 import com.example.thang.smartmoney.xulysukien.mPriceInput;
@@ -27,6 +30,7 @@ public class fragment_tietkiem_tien extends Fragment
 {
     View view;
     Button addButton;
+    Button substractButton;
     TextView soDuView;
 
     @Override
@@ -41,7 +45,8 @@ public class fragment_tietkiem_tien extends Fragment
         view = inflater.inflate(R.layout.fragment_tietkiem_tien, container, false);
         addButton = view.findViewById(R.id.add_saving_button);
         addButton.setOnClickListener(this);
-
+        substractButton = view.findViewById(R.id.withdraw_saving_button);
+        substractButton.setOnClickListener(this);
         soDuView = view.findViewById(R.id.tietkiem_tien_textview_tien);
         refreshData();
 
@@ -74,6 +79,26 @@ public class fragment_tietkiem_tien extends Fragment
                 dialog.show();
 
                 break;
+            case R.id.withdraw_saving_button:
+                final Dialog dialog1 = new Dialog(getActivity());
+                dialog1.setContentView(R.layout.fragment_tietkiem_ruttien);
+                Button subButton = dialog1.findViewById(R.id.tk_substractbtn);
+                final mPriceInput tienOutput = new mPriceInput(dialog1,R.id.tk_substractsotien);
+                subButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int sotienRut = tienOutput.getPrice()   ;
+                        if(!rutTietKiem(sotienRut)){
+                            Toast.makeText(getContext(), R.string.price_le, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        Toast.makeText(getContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                        refreshData();
+                        dialog1.dismiss();
+                    }
+                });
+                dialog1.show();
+                break;
         }
     }
 
@@ -83,9 +108,17 @@ public class fragment_tietkiem_tien extends Fragment
         Date date = Calendar.getInstance().getTime(); // now
         DBTietKiem.themTietKiem(date, sotien, ClassVi.VI_TIET_KIEM, "");
 
+
         return true;
     }
+    boolean rutTietKiem(int sotien) {
+        if (sotien < 1000 || sotien % 500 > 0) return false;
 
+        Date date = Calendar.getInstance().getTime(); // now
+        DBTietKiem.rutTietKiem(date, sotien, ClassVi.VI_TIET_KIEM);
+
+        return true;
+    }
     void refreshData()
     {
         int soDu = DBTietKiem.getSoDu(ClassVi.VI_TIET_KIEM);

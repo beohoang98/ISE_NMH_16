@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -30,7 +35,7 @@
                           <map>
                             <entry key="outputName" value="ic_pen" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/put-in-box.svg" />
+                            <entry key="sourceFile" value="C:\Users\User\Desktop\softwareprogramming\implement\icon\ic_saving_out.svg" />
                           </map>
                         </option>
                       </PersistentState>
