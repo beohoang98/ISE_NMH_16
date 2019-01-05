@@ -127,7 +127,7 @@ public class DBNganSachTest {
 
         int id = database.create(nganSach);
 
-        List<ClassGiaoDich> emptyList = database.getChiTieu(id);
+        List<ClassExpense> emptyList = database.getChiTieu(id);
         Assert.assertTrue(emptyList.size() == 0);
 
         List<ClassExpense> listBanDau = prepareListGiaoDich();
@@ -138,7 +138,7 @@ public class DBNganSachTest {
         List<ClassGiaoDich> listCoDuoc = DBGiaoDich.getTatCa();
         Assert.assertEquals("error in create test",5, listCoDuoc.size());
 
-        List<ClassGiaoDich> listResult = database.getChiTieu(id);
+        List<ClassExpense> listResult = database.getChiTieu(id);
         Assert.assertEquals("Giao dich cua ngan sach khong chinh xac", 4, listResult.size());
     }
 

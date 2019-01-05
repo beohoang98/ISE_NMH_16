@@ -13,6 +13,7 @@ import com.ahmadrosid.svgloader.SvgParser;
 import com.bumptech.glide.Glide;
 import com.caverock.androidsvg.SVGExternalFileResolver;
 import com.caverock.androidsvg.SVGParser;
+import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.database.Database;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class ClassCategory {
                 return cate.name;
         }
 
-        return null;
+        return context.getString(R.string.saving_title);
     }
 
     public static int getIdOfName(String name)

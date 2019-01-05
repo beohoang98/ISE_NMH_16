@@ -49,6 +49,14 @@ public class CategorySpinnerAdapter extends BaseAdapter {
     }
 
     @Override
+    public void notifyDataSetChanged() {
+        ClassCategory.loadFromDB(activity);
+        dataList.clear();
+        dataList.addAll(ClassCategory.getByType(type));
+        super.notifyDataSetChanged();
+    }
+
+    @Override
     public int getCount() {
         return dataList.size();
     }
