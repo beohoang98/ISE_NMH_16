@@ -94,9 +94,6 @@ public class UserFragment extends Fragment
                 openAboutActivity();
             }
         });
-
-        // tam thoi bo chuc nang Firebase Sync
-        syncButton.setVisibility(View.GONE);
     }
 
     @Nullable
