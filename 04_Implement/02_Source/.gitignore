@@ -51,7 +51,7 @@ captures/
 
 # Google Services (e.g. APIs or Firebase)
 # remain ggsv.json
-google-services.json
+*/google-services.json
 
 # Freeline
 freeline.py
