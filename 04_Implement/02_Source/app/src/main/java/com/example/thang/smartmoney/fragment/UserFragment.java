@@ -24,6 +24,7 @@ import com.example.thang.smartmoney.AboutActivity;
 import com.example.thang.smartmoney.MainActivity;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.Tutorial_Activity;
+import com.example.thang.smartmoney.category_activity;
 import com.example.thang.smartmoney.database.FirebaseSync;
 import com.example.thang.smartmoney.notification.NotifyService;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +47,8 @@ public class UserFragment extends Fragment
     private String username;
     private String email;
     private Button aboutButton;
+    private Button categoryButton;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +97,16 @@ public class UserFragment extends Fragment
                 openAboutActivity();
             }
         });
+
+        categoryButton = view.findViewById(R.id.category);
+        categoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), category_activity.class));
+            }
+        });
+
+        progressBar.setVisibility(View.GONE);
     }
 
     @Nullable

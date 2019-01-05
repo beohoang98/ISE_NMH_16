@@ -11,7 +11,8 @@
         android:orientation="vertical">
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -19,8 +20,8 @@
                 android:translationZ="5dp"
                 android:background="@color/colorPrimary"
                 android:id="@+id/toolbar"
-                app:title="Category"
-                app:titleTextColor="@android:color/white">
+                app:title="@string/category_title"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>

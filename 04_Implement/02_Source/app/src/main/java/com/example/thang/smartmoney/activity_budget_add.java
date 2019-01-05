@@ -96,7 +96,7 @@ public class activity_budget_add extends AppCompatActivity
         info.setName(name.getText().toString());
         info.setSoTien(sotien.getPrice());
         info.setNgayBD(ngayBD.getDate());
-        info.setNgayKT(ngayBD.getDate());
+        info.setNgayKT(ngayKT.getDate());
         int n = DBNganSach.getInstance(this).update(info);
 
         if (n > 0) {

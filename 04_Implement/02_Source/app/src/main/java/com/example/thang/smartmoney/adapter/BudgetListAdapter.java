@@ -39,8 +39,9 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final ClassNganSach nganSach = data.get(position);
+        final int _position = position; 
         if (nganSach == null) {
             holder.name.setText("Chu co data");
             return;
@@ -63,7 +64,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onSelectListener.onClick(v, position, nganSach.getId());
+                onSelectListener.onClick(v, _position, nganSach.getId());
             }
         });
     }

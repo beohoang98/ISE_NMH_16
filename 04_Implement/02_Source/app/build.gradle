@@ -5,7 +5,7 @@ apply plugin: 'jacoco'
 android {
     signingConfigs {
         config {
-            keyAlias 'androiddebug'
+            keyAlias 'androiddebugkey'
             keyPassword 'android'
             storeFile file('debug.keystore')
             storePassword 'android'
@@ -53,6 +53,14 @@ android {
     }
     productFlavors {
     }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+    reportsDir = file("./customJacocoReportDir")
 }
 
 dependencies {
