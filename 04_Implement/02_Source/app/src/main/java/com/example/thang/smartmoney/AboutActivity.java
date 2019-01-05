@@ -5,12 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.thang.smartmoney.fragment.UserFragment;
 
 public class AboutActivity extends AppCompatActivity {
 
-    private Button back2Button;
+    private ImageButton back2Button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
