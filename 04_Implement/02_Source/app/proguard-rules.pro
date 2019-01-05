@@ -21,3 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 -dontwarn okhttp3.internal.platform.*
+-dontwarn com.caverock.androidsvg.*
+-keep class * {
+    public private *;
+}

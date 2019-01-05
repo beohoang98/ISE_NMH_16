@@ -3,11 +3,11 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storeFile file('debug.keystore')
-            storePassword 'android'
+        config2 {
+            keyAlias 'key1'
+            keyPassword '123456'
+            storeFile file('/home/noobcoder/.android/debug.jks')
+            storePassword '123456'
         }
     }
     compileSdkVersion 27
@@ -19,17 +19,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
+        signingConfig signingConfigs.config2
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         debug {
             testCoverageEnabled true
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.config2
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config2
         }
     }
     testOptions {
