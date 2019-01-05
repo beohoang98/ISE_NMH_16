@@ -5,5 +5,5 @@
         android:title="@string/delete_title"
         app:showAsAction="always"
         android:icon="@drawable/ic_delete"
-        android:iconTint="@android:color/holo_orange_light" />
+        android:iconTint="@android:color/holo_red_dark" />
 </menu>

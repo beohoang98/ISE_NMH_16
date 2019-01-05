@@ -1,31 +1,40 @@
 package com.example.thang.smartmoney;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-
-import com.example.thang.smartmoney.fragment.UserFragment;
+import android.widget.TextView;
 
 public class AboutActivity extends AppCompatActivity {
-
     private ImageButton back2Button;
+    TextView link;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        back2Button = view.findViewById(R.id.imageButton);
+        back2Button = findViewById(R.id.imageButton);
         back2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUser();
+                returnHome();
+            }
+        });
+
+        link = findViewById(R.id.supportLink);
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browser = new Intent(Intent.ACTION_VIEW);
+                browser.setData(Uri.parse(getString(R.string.github_source)));
+                startActivity(Intent.createChooser(browser, "Open with"));
             }
         });
     }
-    public void openUser(){
-        Intent intent = new Intent(this, UserFragment.class);
-        startActivity(intent);
+    public void returnHome(){
+        finish();
     }
 }

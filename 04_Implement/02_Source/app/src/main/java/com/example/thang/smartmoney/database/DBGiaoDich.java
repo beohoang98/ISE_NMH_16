@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DBGiaoDich {
     protected static SQLiteDatabase db;
@@ -103,7 +104,7 @@ public class DBGiaoDich {
     }
 
     public static ArrayList<ClassGiaoDich> getByMonth(int month, int year) {
-        String pattern = String.format("'%%/%02d/%04d'", month, year);
+        String pattern = String.format(Locale.ENGLISH,"'%%/%02d/%04d'", month, year);
 
         Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoi_gian LIKE " + pattern, null);
         return cursorToArray(cursor);

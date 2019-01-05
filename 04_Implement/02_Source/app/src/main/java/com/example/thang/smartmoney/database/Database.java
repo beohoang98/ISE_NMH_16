@@ -109,6 +109,12 @@ public class Database extends SQLiteOpenHelper {
         {
             Log.d("database", "Upgrade from version " + oldVersion + " to " + newVersion);
 
+            if (newVersion == 4) {
+                // version 0.4, no need delete old data
+                InitDB(db, R.raw.initdb);
+                return;
+            }
+
             try {
                 db.execSQL("DROP TABLE IF EXISTS " + TABLE.GiaoDich);
                 db.execSQL("DROP TABLE IF EXISTS " + TABLE.Category);
