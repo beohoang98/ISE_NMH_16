@@ -104,7 +104,7 @@ public class DBGiaoDich {
     }
 
     public static ArrayList<ClassGiaoDich> getByMonth(int month, int year) {
-        String pattern = String.format(Locale.ENGLISH,"'%%/%02d/%04d'", month, year);
+        String pattern = String.format(Locale.US,"\'%%/%02d/%4d\'", month, year);
 
         Cursor cursor = getDB().rawQuery("SELECT * FROM giaodich WHERE thoi_gian LIKE " + pattern, null);
         return cursorToArray(cursor);

@@ -1,8 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'jacoco'
 
 android {
     signingConfigs {
+        config {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('debug.keystore')
+            storePassword 'android'
+        }
         config2 {
             keyAlias 'key1'
             keyPassword '123456'
@@ -19,13 +26,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config2
+        signingConfig signingConfigs.config
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         debug {
             testCoverageEnabled true
-            signingConfig signingConfigs.config2
+            signingConfig signingConfigs.config
         }
         release {
             minifyEnabled true
@@ -37,10 +44,23 @@ android {
         unitTests {
             includeAndroidResources = true
             returnDefaultValues = true
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
         }
     }
     productFlavors {
     }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+    reportsDir = file("./customJacocoReportDir")
 }
 
 dependencies {

@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.adapter.CategorySpinnerAdapter;
 import com.example.thang.smartmoney.model.ClassCategory;
+import com.example.thang.smartmoney.xulysukien.DeleteDialog;
 
 public class CategoryListFragment extends Fragment
         implements ListView.OnItemLongClickListener
@@ -51,19 +52,15 @@ public class CategoryListFragment extends Fragment
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, final long id) {
-        final Dialog alert = new Dialog(getActivity());
-        alert.setContentView(R.layout.dialog_add_remove);
-        alert.show();
-
-        Button btnXoa = alert.findViewById(R.id.btnXoadgl);
-        btnXoa.setOnClickListener(new View.OnClickListener() {
+        final DeleteDialog dialog = new DeleteDialog(getActivity());
+        dialog.setOnConfirmListener(new DeleteDialog.OnConfirm() {
             @Override
-            public void onClick(View v) {
+            public void onConfirm() {
                 ClassCategory.delete((int)id);
                 adapter.notifyDataSetChanged();
-                alert.dismiss();
             }
         });
+        dialog.show();
 
         return true;
     }

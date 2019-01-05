@@ -83,6 +83,10 @@ public class Activity_ThemGiaoDich extends AppCompatActivity {
             startActivity(new Intent(this, category_activity.class));
         } else if (id == android.R.id.home) {
             finish();
+        } else if (id == R.id.action_saving) {
+            Intent intent = new Intent(this, Activity_Tiet_Kiem.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

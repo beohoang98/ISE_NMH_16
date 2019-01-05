@@ -80,4 +80,6 @@
     <string name="delete">Xóa</string>
     <string name="deposit_money_title">Số tiền</string>
     <string name="money_type">đ</string>
+
+    <string name="category_add">Thêm phân loại</string>
 </resources>

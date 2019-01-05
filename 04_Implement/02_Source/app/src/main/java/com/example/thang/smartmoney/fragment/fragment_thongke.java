@@ -18,6 +18,7 @@ import com.example.thang.smartmoney.R;
 import com.example.thang.smartmoney.database.DBGiaoDich;
 import com.example.thang.smartmoney.model.ClassCategory;
 import com.example.thang.smartmoney.model.ClassGiaoDich;
+import com.example.thang.smartmoney.model.ClassVi;
 import com.example.thang.smartmoney.xulysukien.PriceFormat;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -81,6 +82,7 @@ public class fragment_thongke extends Fragment {
         lineChart.getAxisRight().setEnabled(false);
         lineChart.setDescription(barDes);
         lineChart.setDrawGridBackground(false);
+        lineChart.setVisibleXRangeMinimum(1f);
         lineChart.setScaleMinima(1, 1);
         lineChart.getAxisLeft().setTextSize(7);
         lineChart.getXAxis().setValueFormatter(new LineCharAxisFormatter());
@@ -93,12 +95,14 @@ public class fragment_thongke extends Fragment {
         pieChartIncome.setCenterTextSize(16);
         pieChartIncome.setCenterTextColor(getResources().getColor(R.color.income));
         pieChartIncome.setDescription(pieDes);
+        pieChartIncome.setDrawEntryLabels(false);
 
         pieChartExpense = view.findViewById(R.id.piechar_expense);
         pieChartExpense.setCenterText(getString(R.string.expense_title));
         pieChartExpense.setCenterTextSize(16);
         pieChartExpense.setCenterTextColor(getResources().getColor(R.color.expense));
         pieChartExpense.setDescription(pieDes);
+        pieChartExpense.setDrawEntryLabels(false);
 
         textTotalIncome = view.findViewById(R.id.text_sum_income);
         textTotalExpense = view.findViewById(R.id.text_sum_expense);
@@ -143,9 +147,12 @@ public class fragment_thongke extends Fragment {
                 getString(R.string.income_title),
                 getResources().getColor(R.color.income, null));
 
-        LineData barData = new LineData(dataSetExpense, dataSetIncome);
+        LineData barData = new LineData();
+        if (dataSetIncome != null) barData.addDataSet(dataSetIncome);
+        if (dataSetExpense != null) barData.addDataSet(dataSetExpense);
 
-        lineChart.setData(barData);
+        if (barData.getEntryCount() > 3) lineChart.setData(barData);
+        else lineChart.setData(new LineData());
         lineChart.invalidate();
 
         updatePieChar(pieChartIncome, holder.categoryIncome);
@@ -176,7 +183,7 @@ public class fragment_thongke extends Fragment {
             String cateName = ClassCategory.getName(gd.category_id);
             String day = gd.thoigian.substring(0, 2);
 
-            if (gd.from_id == 0) {
+            if (gd.to_id == ClassVi.VI_CHINH_ID) {
                 int oldVal = holder.categoryIncome.containsKey(cateName) ? holder.categoryIncome.getAsInteger(cateName) : 0;
                 int oldSum = (holder.incomeEachDay.containsKey(day)) ? holder.incomeEachDay.getAsInteger(day) : 0;
 
@@ -184,7 +191,7 @@ public class fragment_thongke extends Fragment {
                 holder.sumIncome += gd.sotien;
                 holder.categoryIncome.put(cateName, oldVal + gd.sotien);
 
-            } else if (gd.to_id == 0) {
+            } else if (gd.from_id == ClassVi.VI_CHINH_ID) {
                 int oldVal = holder.categoryExpense.containsKey(cateName) ? holder.categoryExpense.getAsInteger(cateName) : 0;
                 int oldSum = (holder.expenseEachDay.containsKey(day)) ? holder.expenseEachDay.getAsInteger(day) : 0;
 
@@ -199,6 +206,8 @@ public class fragment_thongke extends Fragment {
 
     LineDataSet getLineDataSetOf(ContentValues map, String title, int color) {
         List<Entry> entries = new ArrayList<>();
+        if (map.size() <= 1) return null;
+
         for (String day : map.keySet())
         {
             int id = Integer.parseInt(day);
@@ -213,6 +222,7 @@ public class fragment_thongke extends Fragment {
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setValueTextSize(7);
         dataSet.setLineWidth(1.5f);
+        dataSet.setDrawValues(false);
 
         return dataSet;
     }
