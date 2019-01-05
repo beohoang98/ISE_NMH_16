@@ -1,11 +1,14 @@
 package com.example.thang.smartmoney.model;
 
 import android.content.ContentValues;
+import android.content.Context;
 
+import com.example.thang.smartmoney.database.DBNganSach;
 import com.example.thang.smartmoney.xulysukien.DateFormat;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 public class ClassNganSach {
     private int id;
@@ -31,6 +34,10 @@ public class ClassNganSach {
         this.soTien = values.getAsInteger("so_tien");
         this.ngayBD = DateFormat.parse(values.getAsString("ngay_bd"));
         this.ngayKT = DateFormat.parse(values.getAsString("ngay_kt"));
+    }
+
+    public List<ClassExpense> getChiTieu(Context context) {
+        return DBNganSach.getInstance(context).getChiTieu(this.id);
     }
 
     public static ClassNganSach create(String name, int soTien, Date ngayBD, Date ngayKT) {

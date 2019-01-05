@@ -50,16 +50,9 @@ public class UserFragment extends Fragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseSync.Init(getContext());
-        aboutButton = view.findViewById(R.id.publisher_btn);
-        aboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAboutActivity();
-            }
-        });
     }
     public void openAboutActivity(){
-        Intent intent = new Intent(this, AboutActivity.class);
+        Intent intent = new Intent(getActivity(), AboutActivity.class);
         startActivity(intent);
     }
     public void AnhXa() {
@@ -93,6 +86,17 @@ public class UserFragment extends Fragment
         SwitchCompat switchCompat = view.findViewById(R.id.switch_notify);
         switchCompat.setChecked(notifyService.isNotify());
         switchCompat.setOnCheckedChangeListener(this);
+
+        aboutButton = view.findViewById(R.id.publisher_btn);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAboutActivity();
+            }
+        });
+
+        // tam thoi bo chuc nang Firebase Sync
+        syncButton.setVisibility(View.GONE);
     }
 
     @Nullable

@@ -12,46 +12,72 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:background="@color/colorPrimary"><![CDATA[>
-
-        ]]>
+        android:background="@color/colorPrimary">
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="55dp"
-            android:layout_height="47dp"
-            android:background="@string/category_null"
-            app:srcCompat="@drawable/ic_chevron_left"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="2dp" />
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_chevron_left" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="About"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
-            tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:textSize="30sp" />
 
     </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Smart Money"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteY="188dp" />
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/lo_go"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/app_version"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:layout_editor_absoluteY="188dp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"
@@ -60,7 +86,7 @@
         android:layout_gravity="center"
         android:text="Create by team NoName16"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -71,20 +97,18 @@
         android:layout_gravity="center"
         android:text="Project : ISE_NMH_16"
         android:textAlignment="center"
-        android:textSize="24sp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/lo_go" />
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Version 1.0"
-        android:textSize="18sp" />
+        android:drawableStart="@drawable/ic_github"
+        android:text="@string/app_support"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:autoLink="web"
+        android:drawablePadding="8dp"
+        android:id="@+id/supportLink"/>
 
 </LinearLayout>

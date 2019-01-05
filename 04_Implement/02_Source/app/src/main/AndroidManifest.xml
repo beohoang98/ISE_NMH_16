@@ -38,6 +38,7 @@
         <activity android:name=".Tutorial_Activity" />
         <activity android:name=".activity_budget" />
         <activity android:name=".activity_budget_add" />
+        <activity android:name=".activity_budget_info"/>
         <activity android:name=".AboutActivity"></activity>
     </application>
 

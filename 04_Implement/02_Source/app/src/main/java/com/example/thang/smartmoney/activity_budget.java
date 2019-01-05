@@ -58,7 +58,7 @@ public class activity_budget extends AppCompatActivity
 
     @Override
     public void onClick(View v, int position, int id) {
-        Intent intent = new Intent(this, activity_budget_add.class);
+        Intent intent = new Intent(this, activity_budget_info.class);
         intent.putExtra("id", id);
         startActivity(intent);
     }
@@ -72,7 +72,8 @@ public class activity_budget extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        nganSachList = DBNganSach.getInstance(this).getAllNganSach();
+        nganSachList.clear();
+        nganSachList.addAll(DBNganSach.getInstance(this).getAllNganSach());
         adapter.notifyDataSetChanged();
     }
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.thang.smartmoney.database.DBNganSach;
 import com.example.thang.smartmoney.model.ClassNganSach;
+import com.example.thang.smartmoney.xulysukien.DateFormat;
 import com.example.thang.smartmoney.xulysukien.mDatePickerClick;
 import com.example.thang.smartmoney.xulysukien.mPriceInput;
 
@@ -24,7 +25,7 @@ public class activity_budget_add extends AppCompatActivity
     TextInputEditText name;
     mPriceInput sotien;
     mDatePickerClick ngayBD, ngayKT;
-    AppCompatButton addButton, xoaButton;
+    AppCompatButton addButton;
 
     ClassNganSach info;
     int info_id;
@@ -47,9 +48,12 @@ public class activity_budget_add extends AppCompatActivity
 
         addButton.setOnClickListener(this);
         if (info_id > -1) {
-            xoaButton.setVisibility(View.VISIBLE);
-            xoaButton.setOnClickListener(this);
+            toolbar.setTitle(getString(R.string.update_title) + " " + info.getName());
             addButton.setText(R.string.update_title);
+            name.setText(info.getName());
+            sotien.setPrice(info.getSoTien());
+            ngayBD.setDate(info.getNgayBD());
+            ngayKT.setDate(info.getNgayKT());
         }
     }
 
@@ -61,7 +65,6 @@ public class activity_budget_add extends AppCompatActivity
         ngayBD = new mDatePickerClick(this, R.id.ngay_bd);
         ngayKT = new mDatePickerClick(this, R.id.ngay_kt);
         addButton = findViewById(R.id.addBtn);
-        xoaButton = findViewById(R.id.xoaBtn);
     }
 
     @Override
@@ -69,12 +72,8 @@ public class activity_budget_add extends AppCompatActivity
         switch (v.getId())
         {
             case R.id.addBtn:
-                if (info_id > -1) addNganSach();
-                else updateNganSach();
-                break;
-
-            case R.id.xoaBtn:
-                xoaNganSach();
+                if (info_id > -1) updateNganSach();
+                else addNganSach();
                 break;
         }
     }
@@ -92,12 +91,20 @@ public class activity_budget_add extends AppCompatActivity
 
     void updateNganSach()
     {
+        if (!validateInput()) return;
 
-    }
+        info.setName(name.getText().toString());
+        info.setSoTien(sotien.getPrice());
+        info.setNgayBD(ngayBD.getDate());
+        info.setNgayKT(ngayBD.getDate());
+        int n = DBNganSach.getInstance(this).update(info);
 
-    void xoaNganSach()
-    {
-
+        if (n > 0) {
+            showInvalidInput("Them thanh cong");
+            finish();
+        } else {
+            showInvalidInput("Loi! Khong cap nhat duoc");
+        }
     }
 
     boolean validateInput()

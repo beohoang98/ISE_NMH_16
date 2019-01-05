@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">Smart Money</string>
+    <string name="app_version">Beta 0.4</string>
+    <string name="github_source">https://github.com/beohoang98/ISE_NMH_16/</string>
+    <string name="app_support"><a href="https://github.com/beohoang98/ISE_NMH_16/" >Support us</a></string>
 
     <string name="price_title">Giá tiền</string>
     <string name="category_title">Phân loại</string>
@@ -63,7 +66,7 @@
     <string name="tutorial_title">Hướng dẫn sử dụng</string>
 
     <string name="saving_des">Chức năng này cho phép bạn ghi nhớ lại việc tiết kiệm của bạn, dễ dàng xem và nhớ lại các khoản tiết kiệm và có thể ghi nhớ nhiều khoản tiết kiệm khác nhau cho những mục đích khác nhau</string>
-    <string name="budget_des">123456</string>
+    <string name="budget_des">Chức năng cho phép bạn theo dõi các chi tiêu trong 1 khoản thời gian cho trước và 1 số tiền cho trước</string>
 
     <string name="budget_add">Thêm sổ ngân sách</string>
     <string name="budget_name">Tên sổ ngân sách</string>

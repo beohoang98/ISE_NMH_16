@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.thang.smartmoney.model.ClassVi;
 import com.example.thang.smartmoney.xulysukien.DateFormat;
 
 import java.util.Date;
@@ -31,7 +32,7 @@ public class DBVi {
 
     public static int getTongIncome()
     {
-        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE from_id = 0;", null);
+        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE to_id = " + ClassVi.VI_CHINH_ID, null);
         if (!cursor.moveToFirst())
             return 0;
 
@@ -40,7 +41,7 @@ public class DBVi {
 
     public static int getTongOutcome()
     {
-        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE to_id = 0;", null);
+        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE from_id = " + ClassVi.VI_CHINH_ID, null);
         if (!cursor.moveToFirst())
             return 0;
 
@@ -50,8 +51,8 @@ public class DBVi {
     public static int getTongIncomeByDate(Date date)
     {
         String dateStr = DateFormat.format(date);
-        String[] args = { dateStr };
-        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE from_id = 0 AND thoi_gian =?", args);
+        String[] args = { ClassVi.VI_CHINH_ID + "" , dateStr };
+        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE to_id = ? AND thoi_gian =?", args);
         if (!cursor.moveToFirst())
             return 0;
 
@@ -61,8 +62,8 @@ public class DBVi {
     public static int getTongOutcomeByDate(Date date)
     {
         String dateStr = DateFormat.format(date);
-        String[] args = {dateStr};
-        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE to_id = 0 AND thoi_gian =?", args);
+        String[] args = {ClassVi.VI_CHINH_ID + "" , dateStr};
+        Cursor cursor = db.rawQuery("SELECT SUM(so_tien) FROM giaodich WHERE from_id = ? AND thoi_gian =?", args);
         if (!cursor.moveToFirst())
             return 0;
 
