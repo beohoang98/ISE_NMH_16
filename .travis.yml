@@ -35,4 +35,4 @@ before_install:
   - chmod +x gradlew
 
 script:
-  - ./gradlew clean test jacocoTestReport check
+  - ./gradlew clean test check
