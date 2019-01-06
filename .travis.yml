@@ -38,4 +38,8 @@ before_script:
   - unzip -P $ZIP_PASSWORD -j ggsv.zip -d app/
 
 script:
-  - ./gradlew clean test check
+  - ./gradlew clean build
+
+after_success:
+  - ./gradlew test
+  - bash <(curl -s https://codecov.io/bash)

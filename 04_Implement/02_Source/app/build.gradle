@@ -58,11 +58,6 @@ android {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.2"
-    reportsDir = file("./customJacocoReportDir")
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
