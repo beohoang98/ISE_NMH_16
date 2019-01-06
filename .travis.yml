@@ -34,5 +34,8 @@ before_install:
   - cd 04_Implement/02_Source/
   - chmod +x gradlew
 
+before_script:
+  - echo $GOOGLE_SERVICES > app/google-services.json
+
 script:
   - ./gradlew clean test check
