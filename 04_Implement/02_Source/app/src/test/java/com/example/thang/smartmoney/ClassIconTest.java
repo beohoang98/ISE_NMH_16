@@ -24,6 +24,7 @@ import org.robolectric.shadows.ShadowApplication;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Calendar;
 
 @RunWith(RobolectricTestRunner.class)
@@ -66,4 +67,26 @@ public class ClassIconTest {
     }
 
 
+    /**
+     * FIX ATTEMPT RE-OPEN ALREADY-CLOSED....
+     * https://stackoverflow.com/questions/30308776/robolectric-accessing-database-throws-an-error
+     *
+     * P/s: Don't understand why?
+     */
+
+    @After
+    public void finishComponentTesting() {
+        resetSingleton(Database.class, "mInstance");
+    }
+
+    private void resetSingleton(Class clazz, String fieldName) {
+        Field instance;
+        try {
+            instance = clazz.getDeclaredField(fieldName);
+            instance.setAccessible(true);
+            instance.set(null, null);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }
