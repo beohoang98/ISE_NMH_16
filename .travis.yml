@@ -35,7 +35,7 @@ before_install:
   - chmod +x gradlew
 
 before_script:
-  - echo $GOOGLE_SERVICES > app/google-services.json
+  - unzip -P $ZIP_PASSWORD -j ggsv.zip -d app/
 
 script:
   - ./gradlew clean test check
