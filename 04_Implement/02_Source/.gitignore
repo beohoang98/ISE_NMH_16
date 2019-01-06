@@ -53,6 +53,8 @@ captures/
 # remain ggsv.json
 google-services.json
 **/google-services.json
+**/debug.keystore
+**/debug.jks
 
 # Freeline
 freeline.py

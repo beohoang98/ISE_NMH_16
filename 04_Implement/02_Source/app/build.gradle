@@ -13,7 +13,7 @@ android {
         config2 {
             keyAlias 'key1'
             keyPassword '123456'
-            storeFile file('/home/noobcoder/.android/debug.jks')
+            storeFile file('debug.jks')
             storePassword '123456'
         }
     }

@@ -35,7 +35,7 @@ before_install:
   - chmod +x gradlew
 
 before_script:
-  - unzip -P $ZIP_PASSWORD -j ggsv.zip -d app/
+  - unzip -P $ZIP_PASSWORD -j hidden.zip -d app/
 
 script:
   - ./gradlew clean build
