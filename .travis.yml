@@ -38,7 +38,7 @@ before_script:
   - unzip -P $ZIP_PASSWORD -j hidden.zip -d app/
 
 script:
-  - ./gradlew clean build
+  - ./gradlew clean build -x test
 
 after_success:
   - ./gradlew test
