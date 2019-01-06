@@ -41,5 +41,5 @@ script:
   - ./gradlew clean build -x test
 
 after_success:
-  - ./gradlew test
+  - ./gradlew clean jacocoTestReport
   - bash <(curl -s https://codecov.io/bash)
