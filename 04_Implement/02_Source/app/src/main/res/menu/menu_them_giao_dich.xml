@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.thang.smartmoney.Activity_ThemGiaoDich">
+
+    <item android:id="@+id/action_category"
+        android:title="@string/category_add"
+        app:showAsAction="never|withText"
+        android:icon="@drawable/ic_view_list"
+        android:iconTint="@color/white"/>
+    <item android:id="@+id/action_saving"
+        android:title="@string/saving_title"
+        android:icon="@drawable/save_money"
+        app:showAsAction="never|withText"
+        android:iconTint="@color/white"/>
+
+</menu>

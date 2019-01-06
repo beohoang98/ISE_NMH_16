@@ -1,5 +1,5 @@
 # ISE_NMH_16
-Project of Sofware Technology in HCMUS
+Project of Software Technology in HCMUS
 
 ## Social link
 
@@ -14,4 +14,12 @@ MSSV | Name | Phone | Main Role
 1612001 | Hoàng Dân An | 0772 1088 66 | **Team Leader**
 1612619 | Nguyễn Bá Thắng | 0162 7901 357 | Architect Designer & Dev
 1612008 | Lê Trần Lâm An | 0397 3541 85 | Requirement Analyst & Tester
-1612043 | Phan Ngọc Thanh Bình | 0162 8646 767 | Developer
+1612043 | Phan Ngọc Thanh Bình | 0162 8646 767 | Analyst & Developer
+
+## Software
+
+**Name:** SmartMoney
+
+**OS:** Android
+
+**Purpose:** A Tools for track your income/outcome, help you can control your wallet and know what things you need most.

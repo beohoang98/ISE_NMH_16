@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'jacoco'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('debug.keystore')
+            storePassword 'android'
+        }
+        config2 {
+            keyAlias 'key1'
+            keyPassword '123456'
+            storeFile file('/home/noobcoder/.android/debug.jks')
+            storePassword '123456'
+        }
+    }
+    compileSdkVersion 27
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.example.thang.smartmoney"
+        minSdkVersion 23
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config2
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+        }
+    }
+    productFlavors {
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.android.support.test:runner:1.0.2'
+    testImplementation 'org.robolectric:robolectric:4.0.2'
+    testImplementation 'androidx.test:core:1.1.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.ar-android:AndroidSvgLoader:1.0.1'
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'org.apache.commons:commons-io:1.3.2'
+}

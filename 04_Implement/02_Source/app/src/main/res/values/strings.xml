@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">Smart Money</string>
+    <string name="app_version">Beta 0.4</string>
+    <string name="github_source">https://github.com/beohoang98/ISE_NMH_16/</string>
+    <string name="app_support"><a href="https://github.com/beohoang98/ISE_NMH_16/" >Support us</a></string>
+
+    <string name="price_title">Giá tiền</string>
+    <string name="category_title">Phân loại</string>
+    <string name="date_title">Ngày</string>
+    <string name="note_title">Ghi Chú</string>
+
+    <string name="income_title">Thu nhập</string>
+    <string name="expense_title">Chi tiêu</string>
+
+    <string name="date_format">dd/MM/yyyy</string>
+
+    <string name="price_nho_hon_1000">Giá tiền không được bé hơn 1000</string>
+    <string name="price_le">Giá tiền không hợp lệ</string>
+    <string name="price_null">Bạn chưa nhập giá tiền</string>
+
+    <string name="category_null">Bạn chưa chọn category</string>
+
+    <string name="md_icon_baseurl">https://material.io/tools/icons/static/icons/</string>
+    <string-array name="md_icon_type">
+        <item>round</item>
+        <item>outline</item>
+    </string-array>
+    <string name="title_activity_them_giao_dich">ThemGiaoDich</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="time_period_thongke">
+        <item>Tháng</item>
+        <item>Năm</item>
+    </string-array>
+
+    <string name="thongke_title">Thống kê</string>
+    <string name="thongke_nodata">Chưa có dữ liệu để thống kê</string>
+    <string name="error_message">Đã có lỗi xảy ra: </string>
+    <string name="skip_login">Không, tôi muốn sử dụng offline</string>
+
+    <string name="saving_title">Tiết kiệm</string>
+    <string name="budget_title">Ngân sách</string>
+
+    <string name="price_label">đ</string>
+    <string name="thongke_month_description">Thống kê theo từng ngày trong tháng</string>
+    <string name="thongke_piechart">Thống kê theo phân loại</string>
+
+    <string name="date_today">Hôm nay</string>
+    <string name="date_yesterday">Hôm qua</string>
+
+    <string name="delete_title">Xóa</string>
+    <string name="update_title">Cập nhật</string>
+    <string name="add_title">Thêm</string>
+
+    <string name="reminder_title">Nhắc nhở mỗi ngày</string>
+    <string name="reminder_content">Buổi tối vui vẻ! Bạn đã cập nhật các hoạt động chi tiêu chưa nào?</string>
+    <string name="user_not_login">Bạn chưa đăng nhập</string>
+    <string name="signin_title">Đăng nhập</string>
+    <string name="signout_title">Đăng xuất</string>
+    <string name="signup_title">Đăng ký</string>
+    <string name="tutorial_title">Hướng dẫn sử dụng</string>
+
+    <string name="saving_des">Chức năng này cho phép bạn ghi nhớ lại việc tiết kiệm của bạn, dễ dàng xem và nhớ lại các khoản tiết kiệm và có thể ghi nhớ nhiều khoản tiết kiệm khác nhau cho những mục đích khác nhau</string>
+    <string name="budget_des">Chức năng cho phép bạn theo dõi các chi tiêu trong 1 khoản thời gian cho trước và 1 số tiền cho trước</string>
+
+    <string name="budget_add">Thêm sổ ngân sách</string>
+    <string name="budget_name">Tên sổ ngân sách</string>
+    <string name="budget_startdate">Ngày bắt đầu</string>
+    <string name="budget_enddate">Ngày kết thúc</string>
+    <string name="budget_money">Quỹ ngân sách cho trước</string>
+    <string name="budget_left">còn lại</string>
+
+    <string name="deposit_title">Thêm tiết kiệm</string>
+    <string name="withdraw_title">Rút</string>
+    <string name="delete">Xóa</string>
+    <string name="deposit_money_title">Số tiền</string>
+    <string name="money_type">đ</string>
+
+    <string name="category_add">Thêm phân loại</string>
+</resources>
